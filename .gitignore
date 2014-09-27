@@ -1,12 +1,12 @@
 #ant specific
-dbs/dist/
-dbs/build/
+Hønens-Indskrivning-System-3/dist/
+Hønens-Indskrivning-System-3/build/
  
 #netbeans specific
-dbs/core
-dbs/nbproject/*
-!dbs/nbproject/project.properties
-!dbs/nbproject/project.xml
+Hønens-Indskrivning-System-3/core
+Hønens-Indskrivning-System-3/nbproject/*
+!Hønens-Indskrivning-System-3/nbproject/project.properties
+!Hønens-Indskrivning-System-3/nbproject/project.xml
  
 #java specific
 *.class
