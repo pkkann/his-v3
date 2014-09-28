@@ -112,7 +112,23 @@ public class ViewController {
                 e.printStackTrace();
             }
         }
+    }
+    
+    public void showNewShiftWizard() {
+        if (this.primaryStage.isShowing()) {
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(ViewController.class.getResource("NewShiftWizardWrapper.fxml"));
+                BorderPane pane = (BorderPane) loader.load();
 
+                NewShiftWizardWrapperController controller = loader.getController();
+                controller.setViewController(this);
+                setCenterView(pane, controller);
+                controller.setPage();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void setCenterView(Pane pane, FadeAble controller) {

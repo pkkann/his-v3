@@ -7,7 +7,9 @@ package his.view;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
@@ -16,11 +18,18 @@ import javafx.fxml.Initializable;
  */
 public class ChooseUsersViewController extends FadeAble implements Initializable {
 
+    @FXML
+    private AnchorPane pane;
     
+    private ViewController viewController;
+    
+    public void setViewController(ViewController viewController) {
+        this.viewController = viewController;
+    }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        setPane(pane);
     }    
     
 }

@@ -53,7 +53,7 @@ public class LoginViewController extends FadeAble implements Initializable {
 
             @Override
             public void run() {
-                LoginViewController.this.viewController.showMainView();
+                LoginViewController.this.viewController.showNewShiftWizard();
             }
         }, viewController.primaryStage);
     }
