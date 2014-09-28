@@ -16,7 +16,7 @@ import javafx.scene.layout.StackPane;
  *
  * @author Patrick
  */
-public class ChooseUsersViewController extends FadeAble implements Initializable {
+public class ShiftSetupViewController extends FadeAble implements Initializable {
 
     @FXML
     private StackPane pane;

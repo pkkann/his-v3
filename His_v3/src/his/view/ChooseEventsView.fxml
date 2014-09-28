@@ -7,8 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<StackPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="455.0" prefWidth="600.0" stylesheets="@../res/default.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="his.view.ChooseUsersViewController">
+<StackPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="455.0" prefWidth="600.0" stylesheets="@../res/default.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="his.view.ChooseEventsViewController">
    <children>
       <Group>
          <children>
@@ -18,7 +17,7 @@
                      <children>
                         <VBox spacing="5.0">
                            <children>
-                              <Label text="All users" />
+                              <Label text="All events" />
                               <ListView prefHeight="200.0" prefWidth="150.0" />
                            </children>
                         </VBox>
@@ -30,7 +29,7 @@
                         </VBox>
                         <VBox spacing="5.0">
                            <children>
-                              <Label text="Users on shift" />
+                              <Label text="Chosen events" />
                               <ListView prefHeight="200.0" prefWidth="150.0" />
                            </children>
                         </VBox>
