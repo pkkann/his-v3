@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="820.0" prefWidth="1310.0" stylesheets="@../res/default.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="his.view.ViewWrapperController">
+   <top>
+      <AnchorPane fx:id="topPane" style="-fx-background-color: #666666;" BorderPane.alignment="CENTER">
+         <children>
+            <HBox layoutX="958.0" layoutY="7.0" spacing="2.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+               <children>
+                  <Button fx:id="minimizeBTN" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleMinimize" />
+                  <Button fx:id="closeBTN" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleClose" />
+                  <Button fx:id="helpBTN" mnemonicParsing="false" />
+                  <Button fx:id="logoutBTN" mnemonicParsing="false" onAction="#handleLogout" />
+                  <Button fx:id="fullscreenToggleBTN" layoutX="958.0" layoutY="7.0" mnemonicParsing="false" onAction="#handleFullscreenToggle" />
+               </children>
+            </HBox>
+            <Label fx:id="titleL" layoutX="14.0" layoutY="10.0" text="TITLE" textFill="WHITE" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="5.0">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </top>
+   <left>
+      <AnchorPane prefWidth="5.0" style="-fx-background-color: #666666;" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <AnchorPane prefWidth="5.0" style="-fx-background-color: #666666;" BorderPane.alignment="CENTER" />
+   </right>
+   <bottom>
+      <StackPane prefHeight="35.0" style="-fx-background-color: #666666;" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" spacing="5.0">
+               <children>
+                  <Label text="Date:" textFill="WHITE" />
+                  <Label layoutX="651.0" layoutY="19.0" text="DATE" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                  </Label>
+                  <Label layoutX="461.0" layoutY="17.0" text="Users:" textFill="WHITE" />
+                  <Label layoutX="501.0" layoutY="19.0" text="USERS" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                  </Label>
+                  <Label layoutX="670.0" layoutY="19.0" text="Enrolled:" textFill="WHITE" />
+                  <Label layoutX="630.0" layoutY="17.0" text="ENROLLED" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                  </Label>
+                  <Label layoutX="645.0" layoutY="19.0" text="Enrolled høns:" textFill="WHITE" />
+                  <Label layoutX="700.0" layoutY="19.0" text="ENROLLEDHØNS" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                  </Label>
+                  <Label layoutX="727.0" layoutY="19.0" text="Enrolled guests:" textFill="WHITE" />
+                  <Label layoutX="813.0" layoutY="19.0" text="ENROLLEDGUESTS" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </StackPane>
+   </bottom>
+</BorderPane>

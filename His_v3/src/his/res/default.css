@@ -1,0 +1,13 @@
+.button {
+	-fx-base: #444444;
+}
+.menu-button {
+	-fx-base: #444444;
+}
+.table-view {
+	-fx-base: #444444;
+}
+.text-field {
+	-fx-base: #ffffff;
+	-fx-text-fill: black;
+}
