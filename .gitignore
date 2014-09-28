@@ -1,0 +1,35 @@
+#ant specific
+His_v3/dist/
+His_v3/build/
+His_v3/data/
+
+ 
+#netbeans specific
+His_v3/core
+His_v3/nbproject/*
+!His_v3/nbproject/project.properties
+!His_v3/nbproject/project.xml
+ 
+#java specific
+*.class
+ 
+#general swap/backup files
+*.so
+*.log
+*.out
+*~
+*.swp
+*.DS_Store
+*.lock
+
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
