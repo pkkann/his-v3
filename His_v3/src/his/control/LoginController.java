@@ -49,7 +49,6 @@ public class LoginController {
             @Override
             public void handle(WorkerStateEvent event) {
                 Dialogs.create()
-                        .owner(primaryStage)
                         .title("Failed")
                         .masthead("Failed to login")
                         .message("Username or password is wrong...\n\nIf you have forgotten, then it is your problem...")

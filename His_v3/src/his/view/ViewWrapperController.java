@@ -17,8 +17,11 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
+import org.controlsfx.control.action.Action;
+import org.controlsfx.dialog.Dialog;
+import org.controlsfx.dialog.Dialog.Actions;
+import org.controlsfx.dialog.Dialogs;
 import org.controlsfx.glyphfont.Glyph;
-import org.controlsfx.glyphfont.GlyphFontRegistry;
 
 /**
  * FXML Controller class
@@ -27,8 +30,6 @@ import org.controlsfx.glyphfont.GlyphFontRegistry;
  */
 public class ViewWrapperController implements Initializable {
 
-    private static double xOffset = 0;
-    private static double yOffset = 0;
     private ViewController viewController;
 
     @FXML
@@ -54,6 +55,10 @@ public class ViewWrapperController implements Initializable {
         this.viewController = viewController;
     }
 
+    public void setLogoutBTNDisabled(boolean disabled) {
+        this.logoutBTN.setDisable(disabled);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         closeBTN.setTooltip(new Tooltip("Close"));
@@ -61,20 +66,20 @@ public class ViewWrapperController implements Initializable {
         fullscreenToggleBTN.setTooltip(new Tooltip("Toggle fullscreen"));
         logoutBTN.setTooltip(new Tooltip("Logout"));
         helpBTN.setTooltip(new Tooltip("Help"));
-        
+
         Glyph gExpand = ResourceManager.getGlyph("default", 'a', Color.WHITE, 16);
         Glyph gContract = ResourceManager.getGlyph("default", 'b', Color.WHITE, 16);
         Glyph gClose = ResourceManager.getGlyph("default", 'c', Color.WHITE, 16);
         Glyph gMinimize = ResourceManager.getGlyph("default", 'd', Color.WHITE, 16);
         Glyph gLogout = ResourceManager.getGlyph("default", 'e', Color.WHITE, 16);
         Glyph gHelp = ResourceManager.getGlyph("default", 'f', Color.WHITE, 16);
-        
+
         closeBTN.setGraphic(gClose);
         minimizeBTN.setGraphic(gMinimize);
         fullscreenToggleBTN.setGraphic(gExpand);
         logoutBTN.setGraphic(gLogout);
         helpBTN.setGraphic(gHelp);
-        
+
         closeBTNTrans = new FadeTransition(Duration.millis(300), closeBTN);
         closeBTNTrans.setFromValue(0.0);
         closeBTNTrans.setToValue(0.0);
@@ -86,7 +91,7 @@ public class ViewWrapperController implements Initializable {
         minimizeBTNTrans.setToValue(0.0);
         minimizeBTNTrans.play();
         minimizeBTN.setDisable(true);
-        
+
         titleLTrans = new FadeTransition(Duration.millis(300), titleL);
         titleLTrans.setFromValue(0.0);
         titleLTrans.setToValue(0.0);
@@ -115,13 +120,13 @@ public class ViewWrapperController implements Initializable {
 //            }
 //        });
     }
-    
+
     private void fadeInTitleL() {
         titleLTrans.setFromValue(0.0);
         titleLTrans.setToValue(1.0);
         titleLTrans.play();
     }
-    
+
     private void fadeOutTitleL() {
         titleLTrans.setFromValue(1.0);
         titleLTrans.setToValue(0.0);
@@ -180,15 +185,18 @@ public class ViewWrapperController implements Initializable {
             fadeInTitleL();
         }
     }
-    
+
     @FXML
     private void handleLogout() {
-        viewController.showLoginView();
+        Action action = Dialogs.create().owner(viewController.primaryStage).title("Are you sure?").message("Sure you want to logout?").showConfirm();
+        if (action == Actions.YES) {
+            viewController.showLoginView();
+        }
     }
-    
+
     @FXML
     private void handleHelp() {
-        viewController.showHelpView();
+
     }
 
 }

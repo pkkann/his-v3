@@ -10,7 +10,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane fx:id="pane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1300.0" stylesheets="@../res/default.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="his.view.MainViewController">
+<StackPane fx:id="pane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../res/default.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="his.view.MainViewController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <center>
@@ -19,10 +19,10 @@
                   <TableView fx:id="residentTV" editable="true" prefHeight="200.0" prefWidth="200.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
                       <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name" />
-                        <TableColumn fx:id="addressColumn" prefWidth="75.0" text="Address" />
+                        <TableColumn fx:id="addressColumn" prefWidth="75.0" text="Address" visible="false" />
                         <TableColumn fx:id="birthdayColumn" prefWidth="75.0" text="Birthday" />
                         <TableColumn fx:id="hoeneColumn" prefWidth="75.0" text="Høne" />
-                        <TableColumn fx:id="reserveColumn" prefWidth="75.0" text="Reserve" />
+                        <TableColumn fx:id="reserveColumn" prefWidth="75.0" text="Reserve" visible="false" />
                         <TableColumn fx:id="oneOneColumn" prefWidth="75.0" text="One-One" />
                     </columns>
                      <columnResizePolicy>
@@ -85,7 +85,7 @@
               <items>
                 <Button fx:id="newResidentBTN" mnemonicParsing="false" onAction="#handleNewResident" text="New resident" />
                   <Button fx:id="editResidentBTN" disable="true" mnemonicParsing="false" onAction="#handleEditResident" text="Edit resident" />
-                  <Button fx:id="tagResidentForDeletionBTN" disable="true" mnemonicParsing="false" onAction="#handleTagResidentForDeletion" text="Tag resident for deletion" />
+                  <Button fx:id="tagResidentForDeletionBTN" disable="true" mnemonicParsing="false" onAction="#handleTagResidentForDeletion" text="Delete resident" />
                   <MenuButton fx:id="saveReportMBTN" mnemonicParsing="false" text="Save report">
                     <items>
                       <MenuItem mnemonicParsing="false" text="All residents" />
@@ -94,7 +94,7 @@
                   </MenuButton>
                   <Button fx:id="endShiftBTN" mnemonicParsing="false" onAction="#handleEndShift" text="End shift" />
                   <Separator prefWidth="10.0" visible="false" />
-                  <TextField fx:id="searchTF" prefWidth="300.0" promptText="Search resident... eks. address or name" />
+                  <TextField fx:id="searchTF" prefWidth="160.0" promptText="Search resident..." />
                   <Separator prefWidth="10.0" visible="false" />
                   <RadioButton fx:id="allRBTN" mnemonicParsing="false" selected="true" text="All">
                      <toggleGroup>
@@ -108,7 +108,7 @@
                   <Separator layoutX="842.0" layoutY="10.0" prefWidth="10.0" visible="false" />
                   <RadioButton fx:id="reserveRBTN" mnemonicParsing="false" text="Reserve" toggleGroup="$search" />
                   <Separator layoutX="910.0" layoutY="10.0" prefWidth="10.0" visible="false" />
-                  <RadioButton fx:id="oneOneRBTN" mnemonicParsing="false" text="One-One" toggleGroup="$search" />
+                  <RadioButton fx:id="oneOneRBTN" mnemonicParsing="false" text="1-1" toggleGroup="$search" />
                   <Separator layoutX="1154.0" layoutY="10.0" prefWidth="10.0" visible="false" />
               </items>
                <padding>

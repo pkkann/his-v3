@@ -19,6 +19,7 @@ public class ViewController {
     public Stage primaryStage;
 
     private BorderPane wrapperView;
+    private ViewWrapperController wrapperController;
     private FadeAble currentController;
 
     public ViewController(Stage primaryStage) {
@@ -30,11 +31,17 @@ public class ViewController {
         initViewWrapper();
         this.primaryStage.setFullScreenExitHint("");
         this.primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
-        this.primaryStage.setMinWidth(1360);
-        this.primaryStage.setMinHeight(870);
+        this.primaryStage.setMinWidth(1044);
+        this.primaryStage.setMinHeight(808);
         this.primaryStage.setTitle(his.His.title);
         this.primaryStage.setMaximized(true);
         this.primaryStage.show();
+    }
+    
+    public void setLogoutBTNDisabled(boolean disabled) {
+        if(wrapperController != null) {
+            wrapperController.setLogoutBTNDisabled(disabled);
+        }
     }
 
     public void setFullscreen(boolean fullscreen) {
@@ -74,6 +81,8 @@ public class ViewController {
             Scene scene = new Scene(pane);
             ViewWrapperController controller = loader.getController();
             controller.setViewController(this);
+            
+            this.wrapperController = controller;
 
             this.primaryStage.setScene(scene);
             this.wrapperView = pane;
@@ -109,6 +118,7 @@ public class ViewController {
                 LoginViewController controller = loader.getController();
                 controller.setViewController(this);
                 setCenterView(pane, controller);
+                setLogoutBTNDisabled(true);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -131,24 +141,9 @@ public class ViewController {
             }
         }
     }
-    
-    public void showHelpView() {
-        if (this.primaryStage.isShowing()) {
-            try {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(ViewController.class.getResource("HelpView.fxml"));
-                AnchorPane pane = (AnchorPane) loader.load();
-
-                HelpViewController controller = loader.getController();
-                controller.setViewController(this);
-                setCenterView(pane, controller);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
 
     private void setCenterView(Pane pane, FadeAble controller) {
+        setLogoutBTNDisabled(false);
         int duration = 300;
         if (this.currentController != null) {
             this.currentController.fadeOut(duration, new Runnable() {
