@@ -27,7 +27,7 @@
                      </font>
                   </Label>
                   <TextField fx:id="usernameTF" promptText="Username" />
-                  <TextField fx:id="passwordTF" promptText="Passwod" />
+                  <PasswordField fx:id="passwordTF" promptText="Password" />
                   <Button fx:id="goBTN" defaultButton="true" mnemonicParsing="false" onAction="#handleGo" text="GO" />
                </children>
                <padding>

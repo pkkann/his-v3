@@ -18,7 +18,7 @@
                <children>
                   <Button fx:id="minimizeBTN" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleMinimize" />
                   <Button fx:id="closeBTN" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleClose" />
-                  <Button fx:id="helpBTN" mnemonicParsing="false" />
+                  <Button fx:id="helpBTN" mnemonicParsing="false" onAction="#handleHelp" />
                   <Button fx:id="logoutBTN" mnemonicParsing="false" onAction="#handleLogout" />
                   <Button fx:id="fullscreenToggleBTN" layoutX="958.0" layoutY="7.0" mnemonicParsing="false" onAction="#handleFullscreenToggle" />
                </children>

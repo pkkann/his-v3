@@ -185,5 +185,10 @@ public class ViewWrapperController implements Initializable {
     private void handleLogout() {
         viewController.showLoginView();
     }
+    
+    @FXML
+    private void handleHelp() {
+        viewController.showHelpView();
+    }
 
 }
