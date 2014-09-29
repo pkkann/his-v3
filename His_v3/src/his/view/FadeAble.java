@@ -47,10 +47,10 @@ public abstract class FadeAble {
             ft.setFromValue(0.0);
             ft.setToValue(1.0);
 
-            //tt.setDuration(Duration.millis(milis));
-            //pane.setLayoutX(-400);
-            //tt.setFromX(pane.getLayoutX());
-            //tt.setToX(0);
+            tt.setDuration(Duration.millis(milis));
+            pane.setLayoutX(-100);
+            tt.setFromX(pane.getLayoutX());
+            tt.setToX(0);
             if (run != null) {
                 pt.setOnFinished(new EventHandler<ActionEvent>() {
 
@@ -72,10 +72,10 @@ public abstract class FadeAble {
             ft.setFromValue(1.0);
             ft.setToValue(0.0);
 
-            //tt.setDuration(Duration.millis(milis));
-            //pane.setLayoutX(0);
-            //tt.setFromX(pane.getLayoutX());
-            //tt.setToX(-400);
+            tt.setDuration(Duration.millis(milis));
+            pane.setLayoutX(0);
+            tt.setFromX(pane.getLayoutX());
+            tt.setToX(100);
             if (run != null) {
                 pt.setOnFinished(new EventHandler<ActionEvent>() {
 

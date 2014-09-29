@@ -28,7 +28,7 @@
                   </Label>
                   <TextField fx:id="usernameTF" promptText="Username" />
                   <TextField fx:id="passwordTF" promptText="Passwod" />
-                  <Button fx:id="goBTN" mnemonicParsing="false" onAction="#handleGo" text="GO" />
+                  <Button fx:id="goBTN" defaultButton="true" mnemonicParsing="false" onAction="#handleGo" text="GO" />
                </children>
                <padding>
                   <Insets bottom="30.0" left="100.0" right="100.0" top="30.0" />
