@@ -23,7 +23,7 @@ public class LoginController {
                     protected Void call() throws InterruptedException, CouldNotLoginException {
                         updateMessage("Logging in . . .");
                         Thread.sleep(500);
-                        if(username.equals("pkkann")) {
+                        if(username.equals("pkkann") || username.equals("admin")) {
                             Thread.sleep(500);
                             if(password.equals("rollercoaster")) {
                                 Thread.sleep(500);
@@ -66,6 +66,12 @@ public class LoginController {
         });
 
         service.start();
-        
+    }
+    
+    public static boolean isAdministrator(String username) {
+        if(username.equals("admin")) {
+            return true;
+        }
+        return false;
     }
 }

@@ -4,7 +4,6 @@ import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCombination;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -136,6 +135,22 @@ public class ViewController {
                 controller.setViewController(this);
                 setCenterView(pane, controller);
                 controller.setPage();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    
+    public void showAdminMenuView() {
+        if (this.primaryStage.isShowing()) {
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(ViewController.class.getResource("AdminMenuView.fxml"));
+                StackPane pane = (StackPane) loader.load();
+
+                AdminMenuViewController controller = loader.getController();
+                controller.setViewController(this);
+                setCenterView(pane, controller);
             } catch (IOException e) {
                 e.printStackTrace();
             }

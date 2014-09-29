@@ -53,7 +53,11 @@ public class LoginViewController extends FadeAble implements Initializable {
 
             @Override
             public void run() {
-                LoginViewController.this.viewController.showNewShiftWizard();
+                if (!LoginController.isAdministrator(usernameTF.getText())) {
+                    LoginViewController.this.viewController.showNewShiftWizard();
+                } else {
+                    LoginViewController.this.viewController.showAdminMenuView();
+                }
             }
         }, viewController.primaryStage);
     }
