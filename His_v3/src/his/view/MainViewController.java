@@ -18,9 +18,7 @@ import javafx.scene.layout.StackPane;
  *
  * @author Patrick
  */
-public class MainViewController extends FadeAble implements Initializable {
-
-    private ViewController viewController;
+public class MainViewController extends View implements Initializable {
     
     //Buttons
     @FXML
@@ -77,10 +75,6 @@ public class MainViewController extends FadeAble implements Initializable {
     //Pane
     @FXML
     private StackPane pane;
-    
-    public void setViewController(ViewController viewController) {
-        this.viewController = viewController;
-    }
     
     @FXML
     @Override

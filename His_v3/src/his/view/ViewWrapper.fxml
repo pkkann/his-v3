@@ -23,11 +23,15 @@
                   <Button fx:id="fullscreenToggleBTN" layoutX="958.0" layoutY="7.0" mnemonicParsing="false" onAction="#handleFullscreenToggle" />
                </children>
             </HBox>
-            <Label fx:id="titleL" layoutX="14.0" layoutY="10.0" text="TITLE" textFill="WHITE" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="5.0">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
+            <HBox spacing="10.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="5.0">
+               <children>
+                  <Label fx:id="titleL" text="TITLE" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
          </children>
       </AnchorPane>
    </top>
@@ -51,8 +55,8 @@
                         <Insets right="10.0" />
                      </padding>
                   </Label>
-                  <Label layoutX="461.0" layoutY="17.0" text="Users:" textFill="WHITE" />
-                  <Label layoutX="501.0" layoutY="19.0" text="USERS" textFill="WHITE">
+                  <Label layoutX="461.0" layoutY="17.0" text="Logged in:" textFill="WHITE" />
+                  <Label fx:id="loggedInL" layoutX="501.0" layoutY="19.0" text="LOGGEDIN" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -87,6 +91,7 @@
                         <Insets right="10.0" />
                      </padding>
                   </Label>
+                  <Button fx:id="editProfileBTN" mnemonicParsing="false" text="Edit profile" />
                </children>
             </HBox>
          </children>

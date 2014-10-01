@@ -1,5 +1,8 @@
 package his.view;
 
+import his.control.ConfigHandler;
+import his.model.User;
+import his.model.UserRegister;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -8,6 +11,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import org.controlsfx.dialog.Dialogs;
 
 /**
  *
@@ -15,14 +19,19 @@ import javafx.stage.Stage;
  */
 public class ViewController {
 
+    public UserRegister userRegister;
+
     public Stage primaryStage;
 
     private BorderPane wrapperView;
     private ViewWrapperController wrapperController;
-    private FadeAble currentController;
+    private View currentController;
 
-    public ViewController(Stage primaryStage) {
+    private User loggedInUser;
+
+    public ViewController(Stage primaryStage, UserRegister userRegister) {
         this.primaryStage = primaryStage;
+        this.userRegister = userRegister;
         init();
     }
 
@@ -36,10 +45,25 @@ public class ViewController {
         this.primaryStage.setMaximized(true);
         this.primaryStage.show();
     }
-    
-    public void setLogoutBTNDisabled(boolean disabled) {
-        if(wrapperController != null) {
-            wrapperController.setLogoutBTNDisabled(disabled);
+
+    public void setLoggedInUser(User u) {
+        if (wrapperController != null) {
+            this.loggedInUser = u;
+            if (this.loggedInUser != null) {
+                wrapperController.setLoggedInLText(this.loggedInUser.getName());
+                wrapperController.setEditProfileBTNDisabled(false);
+                wrapperController.setLogoutBTNDisabled(false);
+            } else {
+                wrapperController.setLoggedInLText("None");
+                wrapperController.setEditProfileBTNDisabled(true);
+                wrapperController.setLogoutBTNDisabled(true);
+            }
+        }
+    }
+
+    public void setViewTitle(String text) {
+        if (wrapperController != null) {
+            this.wrapperController.setTitleLText(text);
         }
     }
 
@@ -80,13 +104,16 @@ public class ViewController {
             Scene scene = new Scene(pane);
             ViewWrapperController controller = loader.getController();
             controller.setViewController(this);
-            
+
             this.wrapperController = controller;
 
             this.primaryStage.setScene(scene);
             this.wrapperView = pane;
         } catch (IOException e) {
-            e.printStackTrace();
+            Dialogs.create().title("Failed to load").message("Failed to load view...\nContact administrator").showError();
+            if (ConfigHandler.getInstance().getDebug()) {
+                Dialogs.create().title("IOException").message("An IOException occurred...").showException(e);
+            }
         }
     }
 
@@ -100,8 +127,12 @@ public class ViewController {
                 MainViewController controller = loader.getController();
                 controller.setViewController(this);
                 setCenterView(pane, controller);
+                setViewTitle("Residents");
             } catch (IOException e) {
-                e.printStackTrace();
+                Dialogs.create().title("Failed to load").message("Failed to load view...\nContact administrator").showError();
+                if (ConfigHandler.getInstance().getDebug()) {
+                    Dialogs.create().title("IOException").message("An IOException occurred...").showException(e);
+                }
             }
         }
 
@@ -117,13 +148,17 @@ public class ViewController {
                 LoginViewController controller = loader.getController();
                 controller.setViewController(this);
                 setCenterView(pane, controller);
-                setLogoutBTNDisabled(true);
+                setLoggedInUser(null);
+                setViewTitle("Login");
             } catch (IOException e) {
-                e.printStackTrace();
+                Dialogs.create().title("Failed to load").message("Failed to load view...\nContact administrator").showError();
+                if (ConfigHandler.getInstance().getDebug()) {
+                    Dialogs.create().title("IOException").message("An IOException occurred...").showException(e);
+                }
             }
         }
     }
-    
+
     public void showNewShiftWizard() {
         if (this.primaryStage.isShowing()) {
             try {
@@ -135,12 +170,16 @@ public class ViewController {
                 controller.setViewController(this);
                 setCenterView(pane, controller);
                 controller.setPage();
+                setViewTitle("New shift wizard");
             } catch (IOException e) {
-                e.printStackTrace();
+                Dialogs.create().title("Failed to load").message("Failed to load view...\nContact administrator").showError();
+                if (ConfigHandler.getInstance().getDebug()) {
+                    Dialogs.create().title("IOException").message("An IOException occurred...").showException(e);
+                }
             }
         }
     }
-    
+
     public void showAdminMenuView() {
         if (this.primaryStage.isShowing()) {
             try {
@@ -151,14 +190,39 @@ public class ViewController {
                 AdminMenuViewController controller = loader.getController();
                 controller.setViewController(this);
                 setCenterView(pane, controller);
+                setViewTitle("Administrators menu");
             } catch (IOException e) {
-                e.printStackTrace();
+                Dialogs.create().title("Failed to load").message("Failed to load view...\nContact administrator").showError();
+                if (ConfigHandler.getInstance().getDebug()) {
+                    Dialogs.create().title("IOException").message("An IOException occurred...").showException(e);
+                }
             }
         }
     }
 
-    private void setCenterView(Pane pane, FadeAble controller) {
-        setLogoutBTNDisabled(false);
+    public void showManageUsersView() {
+        if (this.primaryStage.isShowing()) {
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(ViewController.class.getResource("ManageUsersView.fxml"));
+                StackPane pane = (StackPane) loader.load();
+
+                ManageUsersViewController controller = loader.getController();
+                controller.setViewController(this);
+                setCenterView(pane, controller);
+                setViewTitle("Manage users");
+                controller.loadTable();
+            } catch (IOException e) {
+                Dialogs.create().title("Failed to load").message("Failed to load view...\nContact administrator").showError();
+                if (ConfigHandler.getInstance().getDebug()) {
+                    Dialogs.create().title("IOException").message("An IOException occurred...").showException(e);
+                }
+            }
+        }
+    }
+
+    private void setCenterView(Pane pane, View controller) {
+        setLoggedInUser(loggedInUser);
         int duration = 300;
         if (this.currentController != null) {
             this.currentController.fadeOut(duration, new Runnable() {

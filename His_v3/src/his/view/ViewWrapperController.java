@@ -18,7 +18,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import org.controlsfx.control.action.Action;
-import org.controlsfx.dialog.Dialog;
 import org.controlsfx.dialog.Dialog.Actions;
 import org.controlsfx.dialog.Dialogs;
 import org.controlsfx.glyphfont.Glyph;
@@ -46,6 +45,11 @@ public class ViewWrapperController implements Initializable {
     private Button logoutBTN;
     @FXML
     private Button helpBTN;
+    @FXML
+    private Button editProfileBTN;
+    
+    @FXML
+    private Label loggedInL;
 
     private FadeTransition minimizeBTNTrans;
     private FadeTransition closeBTNTrans;
@@ -57,6 +61,18 @@ public class ViewWrapperController implements Initializable {
 
     public void setLogoutBTNDisabled(boolean disabled) {
         this.logoutBTN.setDisable(disabled);
+    }
+    
+    public void setEditProfileBTNDisabled(boolean disabled) {
+        this.editProfileBTN.setDisable(disabled);
+    }
+    
+    public void setLoggedInLText(String text) {
+        this.loggedInL.setText(text);
+    }
+    
+    public void setTitleLText(String text) {
+        this.titleL.setText(text);
     }
 
     @Override
@@ -92,12 +108,6 @@ public class ViewWrapperController implements Initializable {
         minimizeBTNTrans.play();
         minimizeBTN.setDisable(true);
 
-        titleLTrans = new FadeTransition(Duration.millis(300), titleL);
-        titleLTrans.setFromValue(0.0);
-        titleLTrans.setToValue(0.0);
-        titleLTrans.play();
-        titleL.setText(his.His.title);
-
 //        topPane.setOnMousePressed(new EventHandler<MouseEvent>() {
 //
 //            @Override
@@ -119,18 +129,6 @@ public class ViewWrapperController implements Initializable {
 //                }
 //            }
 //        });
-    }
-
-    private void fadeInTitleL() {
-        titleLTrans.setFromValue(0.0);
-        titleLTrans.setToValue(1.0);
-        titleLTrans.play();
-    }
-
-    private void fadeOutTitleL() {
-        titleLTrans.setFromValue(1.0);
-        titleLTrans.setToValue(0.0);
-        titleLTrans.play();
     }
 
     private void fadeInMinimizeBTN() {
@@ -177,12 +175,12 @@ public class ViewWrapperController implements Initializable {
             viewController.setFullscreen(false);
             fadeOutCloseBTN();
             fadeOutMinimizeBTN();
-            fadeOutTitleL();
+            //fadeOutTitleL();
         } else {
             viewController.setFullscreen(true);
             fadeInCloseBTN();
             fadeInMinimizeBTN();
-            fadeInTitleL();
+            //fadeInTitleL();
         }
     }
 

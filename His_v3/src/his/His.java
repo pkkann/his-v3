@@ -9,8 +9,6 @@ import his.util.Loader;
 import his.view.ViewController;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import org.controlsfx.dialog.Dialogs;
@@ -36,13 +34,21 @@ public class His extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        Loader.showSimpleLoader(primaryStage, "Loading...", "Just a moment, loading registers...", new Runnable() {
+        Loader.showSimpleLoader(primaryStage, "Loading...", "Just a moment, loading everything...", new Runnable() {
 
             @Override
             public void run() {
                 loadRegisters();
             }
-        }, null, new Runnable() {
+        }, new Runnable() {
+
+            @Override
+            public void run() {
+                registerGlyphs();
+                viewController = new ViewController(primaryStage, userRegister);
+                viewController.showLoginView();
+            }
+        }, new Runnable() {
 
             @Override
             public void run() {
@@ -54,10 +60,6 @@ public class His extends Application {
                 }
             }
         });
-
-        registerGlyphs();
-        viewController = new ViewController(primaryStage);
-        viewController.showLoginView();
 
     }
 
@@ -89,13 +91,16 @@ public class His extends Application {
                 map.put("contract", 'b');
                 map.put("close", 'c');
                 map.put("minimize", 'd');
-                map.put("close", 'e');
+                map.put("logout", 'e');
                 map.put("help", 'f');
+                map.put("edit", 'g');
+                map.put("new", 'h');
+                map.put("delete", 'i');
+                map.put("back", 'j');
                 return map;
             }
         };
         ResourceManager.registerGlyphFont("default", gf);
-
     }
 
     public static void main(String[] args) {

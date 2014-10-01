@@ -16,7 +16,7 @@ import javafx.scene.layout.StackPane;
  *
  * @author Patrick
  */
-public class NewShiftWizardWrapperController extends FadeAble implements Initializable {
+public class NewShiftWizardWrapperController extends View implements Initializable {
 
     @FXML
     private BorderPane pane;
@@ -31,16 +31,10 @@ public class NewShiftWizardWrapperController extends FadeAble implements Initial
     @FXML
     private Label allPagesL;
 
-    private FadeAble currentController;
-
-    private ViewController viewController;
+    private View currentController;
 
     private int page = 0;
-    private int totalPages = 3;
-
-    public void setViewController(ViewController viewController) {
-        this.viewController = viewController;
-    }
+    private final int totalPages = 3;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -95,7 +89,7 @@ public class NewShiftWizardWrapperController extends FadeAble implements Initial
         }
     }
 
-    private void setCenterView(Pane pane, FadeAble controller) {
+    private void setCenterView(Pane pane, View controller) {
         int duration = 300;
         if (this.currentController != null) {
             this.currentController.fadeOut(duration, new Runnable() {

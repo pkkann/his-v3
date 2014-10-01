@@ -16,7 +16,7 @@ import javafx.collections.ObservableList;
 public abstract class Register<DTYPE extends ModelClass> {
     
     private final DAO<DTYPE> dao;
-    private final ObservableList<DTYPE> objects;
+    protected final ObservableList<DTYPE> objects;
     protected IDHandler idHandler;
     
     public Register(DAO<DTYPE> dao, IDHandler idHandler) {

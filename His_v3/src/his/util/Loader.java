@@ -1,7 +1,6 @@
 
 package his.util;
 
-import his.exceptions.CouldNotLoginException;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
@@ -22,7 +21,7 @@ public class Loader {
             protected Task<Void> createTask() {
                 return new Task<Void>() {
                     @Override
-                    protected Void call() throws InterruptedException, CouldNotLoginException {
+                    protected Void call() throws InterruptedException {
                         updateMessage(message);
                         if(task != null) {
                             task.run();

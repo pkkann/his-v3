@@ -16,16 +16,10 @@ import javafx.scene.layout.StackPane;
  *
  * @author Patrick
  */
-public class ChooseEventsViewController extends FadeAble implements Initializable {
+public class ChooseEventsViewController extends View implements Initializable {
 
     @FXML
     private StackPane pane;
-    
-    private ViewController viewController;
-    
-    public void setViewController(ViewController viewController) {
-        this.viewController = viewController;
-    }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {

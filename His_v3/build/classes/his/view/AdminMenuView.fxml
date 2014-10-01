@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -11,17 +12,29 @@
    <children>
       <Group>
          <children>
-            <HBox alignment="CENTER" spacing="10.0">
+            <VBox spacing="20.0">
                <children>
-                  <Button mnemonicParsing="false" text="Manage shifts" />
-                  <Button mnemonicParsing="false" text="Manage users" />
-                  <Button mnemonicParsing="false" text="Manage quarantines" />
-                  <Button mnemonicParsing="false" text="Settings" />
+                  <Label text="Administrators menu">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="6.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox alignment="CENTER" spacing="10.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#handleManageShifts" text="Manage shifts" />
+                        <Button mnemonicParsing="false" onAction="#handleManageUsers" text="Manage users" />
+                        <Button mnemonicParsing="false" onAction="#handleManageQuarantines" text="Manage quarantines" />
+                        <Button mnemonicParsing="false" onAction="#handleSettings" text="Settings" />
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </HBox>
                </children>
-               <padding>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-               </padding>
-            </HBox>
+            </VBox>
          </children>
       </Group>
    </children>

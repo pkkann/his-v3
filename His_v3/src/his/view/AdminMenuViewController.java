@@ -16,20 +16,34 @@ import javafx.scene.layout.StackPane;
  *
  * @author Patrick
  */
-public class AdminMenuViewController extends FadeAble implements Initializable {
+public class AdminMenuViewController extends View implements Initializable {
 
     @FXML
     private StackPane pane;
     
-    private ViewController viewController;
-    
-    public void setViewController(ViewController viewController) {
-        this.viewController = viewController;
-    }
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         setPane(pane);
-    }    
+    }
+    
+    @FXML
+    private void handleManageShifts() {
+        
+    }
+    
+    @FXML
+    private void handleManageUsers() {
+        viewController.showManageUsersView();
+    }
+    
+    @FXML
+    private void handleManageQuarantines() {
+        
+    }
+    
+    @FXML
+    private void handleSettings() {
+        
+    }
     
 }

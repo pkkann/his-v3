@@ -5,7 +5,7 @@
  */
 package his.view;
 
-import his.control.LoginController;
+import his.model.User;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -13,15 +13,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
+import org.controlsfx.dialog.Dialogs;
 
 /**
  * FXML Controller class
  *
  * @author Patrick
  */
-public class LoginViewController extends FadeAble implements Initializable {
-
-    private ViewController viewController;
+public class LoginViewController extends View implements Initializable {
 
     //Fields
     @FXML
@@ -37,10 +36,6 @@ public class LoginViewController extends FadeAble implements Initializable {
     @FXML
     private StackPane pane;
 
-    public void setViewController(ViewController viewController) {
-        this.viewController = viewController;
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         super.setPane(pane);
@@ -49,17 +44,20 @@ public class LoginViewController extends FadeAble implements Initializable {
 
     @FXML
     private void handleGo() {
-        LoginController.executeLogin(usernameTF.getText(), passwordTF.getText(), new Runnable() {
-
-            @Override
-            public void run() {
-                if (!LoginController.isAdministrator(usernameTF.getText())) {
-                    LoginViewController.this.viewController.showNewShiftWizard();
-                } else {
-                    LoginViewController.this.viewController.showAdminMenuView();
-                }
+        String username = usernameTF.getText();
+        String password = passwordTF.getText();
+        User user = viewController.userRegister.get(username, password);
+        
+        if(user == null) {
+            Dialogs.create().owner(viewController.primaryStage).title("Login failed").message("Username or password is wrong...").showWarning();
+        } else {
+            viewController.setLoggedInUser(user);
+            if(user.isAdministrator()) {
+                viewController.showAdminMenuView();
+            } else {
+                viewController.showNewShiftWizard();
             }
-        }, viewController.primaryStage);
+        }
     }
 
 }

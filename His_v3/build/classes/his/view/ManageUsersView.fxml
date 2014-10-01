@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane fx:id="pane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="his.view.ManageUsersViewController">
+   <children>
+      <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" stylesheets="@../res/default.css">
+         <center>
+            <TableView fx:id="usersTV" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+               <columns>
+                  <TableColumn fx:id="nameTC" editable="false" prefWidth="75.0" sortable="false" text="Name" />
+                  <TableColumn fx:id="usernameTC" editable="false" prefWidth="75.0" sortable="false" text="Username" />
+                  <TableColumn fx:id="administratorTC" editable="false" maxWidth="2000.0" prefWidth="75.0" sortable="false" text="Administrator" />
+               </columns>
+            </TableView>
+         </center>
+         <top>
+            <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <items>
+                  <Button fx:id="backBTN" mnemonicParsing="false" onAction="#handleBack" />
+                  <Separator maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="20.0" />
+                  <Button fx:id="createBTN" mnemonicParsing="false" onAction="#handleCreate" />
+                  <Button fx:id="editBTN" disable="true" mnemonicParsing="false" onAction="#handleEdit" />
+                  <Button fx:id="deleteBTN" disable="true" mnemonicParsing="false" onAction="#handleDelete" />
+                  <TextField promptText="Search user..." />
+               </items>
+            </ToolBar>
+         </top>
+      </BorderPane>
+   </children>
+</StackPane>

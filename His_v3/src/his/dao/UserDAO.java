@@ -23,8 +23,12 @@ public class UserDAO extends DAO<User> {
             String name = source.getName();
             String username = source.getUsername();
             String password = source.getPassword();
+            int administrator = 0;
+            if(source.isAdministrator()) {
+                administrator = 1;
+            }
 
-            String sql = "INSERT INTO user (id, name, username, password) VALUES(" + id + ", '" + name + "', '" + username + "', '" + password + "');";
+            String sql = "INSERT INTO user (id, name, username, password, administrator) VALUES(" + id + ", '" + name + "', '" + username + "', '" + password + "', "+administrator+");";
             st.execute(sql);
         } catch (SQLException ex) {
             Dialogs.create().title("SQLException").message("An SQLException occurred...").showException(ex);
@@ -40,8 +44,12 @@ public class UserDAO extends DAO<User> {
             String name = source.getName();
             String username = source.getUsername();
             String password = source.getPassword();
+            int administrator = 0;
+            if(source.isAdministrator()) {
+                administrator = 1;
+            }
 
-            String sql = "UPDATE user SET name='" + name + "', username='" + username + "', password='" + password + "' WHERE id=" + id + ";";
+            String sql = "UPDATE user SET name='" + name + "', username='" + username + "', password='" + password + "', administrator="+administrator+" WHERE id=" + id + ";";
             st.executeUpdate(sql);
         } catch (SQLException ex) {
             Dialogs.create().title("SQLException").message("An SQLException occurred...").showException(ex);
@@ -63,7 +71,11 @@ public class UserDAO extends DAO<User> {
                 String name = rs.getString("name");
                 String username = rs.getString("username");
                 String password = rs.getString("password");
-                User u = new User(id, name, username, password);
+                boolean administrator = false;
+                if(rs.getInt("administrator") == 1) {
+                    administrator = true;
+                }
+                User u = new User(id, name, username, password, administrator);
                 objects.add(u);
             }
         } catch (SQLException ex) {

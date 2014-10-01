@@ -1,6 +1,8 @@
 
 package his.model;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -13,16 +15,18 @@ public class User extends ModelClass {
     private final StringProperty name;
     private final StringProperty username;
     private final StringProperty password;
+    private final BooleanProperty administrator;
 
-    public User(int id, String name, String username, String password) {
+    public User(int id, String name, String username, String password, boolean administrator) {
         super(id);
         this.name = new SimpleStringProperty(name);
         this.username = new SimpleStringProperty(username);
         this.password = new SimpleStringProperty(password);
+        this.administrator = new SimpleBooleanProperty(administrator);
     }
 
     public String getName() {
-        return name.get();
+        return this.name.get();
     }
 
     public void setName(String name) {
@@ -30,7 +34,7 @@ public class User extends ModelClass {
     }
 
     public String getUsername() {
-        return username.get();
+        return this.username.get();
     }
 
     public void setUsername(String username) {
@@ -38,23 +42,35 @@ public class User extends ModelClass {
     }
 
     public String getPassword() {
-        return password.get();
+        return this.password.get();
     }
 
     public void setPassword(String password) {
         this.password.set(password);
     }
+    
+    public boolean isAdministrator() {
+        return this.administrator.get();
+    }
+    
+    public void setAdministrator(boolean administrator) {
+        this.administrator.set(administrator);
+    }
 
     public StringProperty getNameProperty() {
-        return name;
+        return this.name;
     }
 
     public StringProperty getUsernameProperty() {
-        return username;
+        return this.username;
     }
 
     public StringProperty getPasswordProperty() {
-        return password;
+        return this.password;
+    }
+    
+    public BooleanProperty isAdministratorProperty() {
+        return this.administrator;
     }
     
 }
