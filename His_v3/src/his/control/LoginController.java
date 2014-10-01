@@ -1,6 +1,6 @@
 package his.control;
 
-import exceptions.CouldNotLoginException;
+import his.exceptions.CouldNotLoginException;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
