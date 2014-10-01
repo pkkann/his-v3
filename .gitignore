@@ -1,14 +1,14 @@
 #ant specific
-His_v3/dist/
-His_v3/build/
-His_v3/data/
+his-v3/dist/
+his-v3/build/
+his-v3/data/
 
  
 #netbeans specific
-His_v3/core
-His_v3/nbproject/*
-!His_v3/nbproject/project.properties
-!His_v3/nbproject/project.xml
+his-v3/core
+his-v3/nbproject/*
+!his-v3/nbproject/project.properties
+!his-v3/nbproject/project.xml
  
 #java specific
 *.class
