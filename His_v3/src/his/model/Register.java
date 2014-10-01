@@ -1,7 +1,10 @@
 
 package his.model;
 
+import his.control.IDHandler;
 import his.dao.DAO;
+import his.util.DBUtil;
+import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -14,10 +17,12 @@ public abstract class Register<DTYPE extends ModelClass> {
     
     private final DAO<DTYPE> dao;
     private final ObservableList<DTYPE> objects;
+    protected IDHandler idHandler;
     
-    public Register(DAO<DTYPE> dao) {
+    public Register(DAO<DTYPE> dao, IDHandler idHandler) {
         this.objects = FXCollections.observableArrayList();
         this.dao = dao;
+        this.idHandler = idHandler;
     }
     
     /**
@@ -27,6 +32,7 @@ public abstract class Register<DTYPE extends ModelClass> {
     public void insert(DTYPE source) {
         objects.add(source);
         dao.insert(source);
+        DBUtil.close();
     }
     
     /**
@@ -37,6 +43,7 @@ public abstract class Register<DTYPE extends ModelClass> {
     public void update(DTYPE target, DTYPE source) {
         objects.set(objects.indexOf(target), source);
         dao.update(target, source);
+        DBUtil.close();
     }
     
     /**
@@ -60,6 +67,7 @@ public abstract class Register<DTYPE extends ModelClass> {
     public void delete(DTYPE target) {
         objects.remove(target);
         dao.delete(target);
+        DBUtil.close();
     }
     
     /**
@@ -71,10 +79,28 @@ public abstract class Register<DTYPE extends ModelClass> {
     }
     
     /**
-     * Loads register with database data
+     * Loads register with database data.
+     * Remember to run DBUtil.close() after all registers has loaded.
      */
     public void loadRegister() {
         objects.addAll(dao.selectAll());
+    }
+    
+    /**
+     * Returns all objects
+     * @return objects
+     */
+    public ArrayList<DTYPE> getObjects() {
+        ArrayList<DTYPE> objs = new ArrayList<>(objects);
+        return objs;
+    }
+    
+    /**
+     * Returns all objects as an observable list
+     * @return objects
+     */
+    public ObservableList<DTYPE> getObservableObjects() {
+        return objects;
     }
 
 }

@@ -1,45 +1,60 @@
 
 package his.model;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 /**
  *
  * @author Patrick
  */
 public class User extends ModelClass {
     
-    private String name;
-    private String username;
-    private String password;
+    private final StringProperty name;
+    private final StringProperty username;
+    private final StringProperty password;
 
     public User(int id, String name, String username, String password) {
         super(id);
-        this.name = name;
-        this.username = username;
-        this.password = password;
+        this.name = new SimpleStringProperty(name);
+        this.username = new SimpleStringProperty(username);
+        this.password = new SimpleStringProperty(password);
     }
 
     public String getName() {
-        return name;
+        return name.get();
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name.set(name);
     }
 
     public String getUsername() {
-        return username;
+        return username.get();
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.username.set(username);
     }
 
     public String getPassword() {
-        return password;
+        return password.get();
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password.set(password);
+    }
+
+    public StringProperty getNameProperty() {
+        return name;
+    }
+
+    public StringProperty getUsernameProperty() {
+        return username;
+    }
+
+    public StringProperty getPasswordProperty() {
+        return password;
     }
     
 }
