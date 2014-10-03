@@ -23,12 +23,14 @@ public class UserDAO extends DAO<User> {
             String name = source.getName();
             String username = source.getUsername();
             String password = source.getPassword();
+            String email = source.getEmail();
+            String phone = source.getPhone();
             int administrator = 0;
-            if(source.isAdministrator()) {
+            if (source.isAdministrator()) {
                 administrator = 1;
             }
 
-            String sql = "INSERT INTO user (id, name, username, password, administrator) VALUES(" + id + ", '" + name + "', '" + username + "', '" + password + "', "+administrator+");";
+            String sql = "INSERT INTO user (id, name, username, password, email, phone, administrator) VALUES(" + id + ", '" + name + "', '" + username + "', '" + password + "', '" + email + "', '" + phone + "', " + administrator + ");";
             st.execute(sql);
         } catch (SQLException ex) {
             Dialogs.create().title("SQLException").message("An SQLException occurred...").showException(ex);
@@ -36,20 +38,23 @@ public class UserDAO extends DAO<User> {
     }
 
     @Override
-    public void update(User target, User source) {
+    public void update(User source) {
         try {
             Statement st = DBUtil.getStatement();
 
-            int id = target.getId();
+            int id = source.getId();
             String name = source.getName();
             String username = source.getUsername();
             String password = source.getPassword();
+            String email = source.getEmail();
+            String phone = source.getPhone();
             int administrator = 0;
-            if(source.isAdministrator()) {
+            if (source.isAdministrator()) {
                 administrator = 1;
             }
 
-            String sql = "UPDATE user SET name='" + name + "', username='" + username + "', password='" + password + "', administrator="+administrator+" WHERE id=" + id + ";";
+            String sql = "UPDATE user SET name='" + name + "', username='" + username + "', password='" + password + "', email='" + email + "', phone='" + phone + "', administrator=" + administrator + " WHERE id=" + id + ";";
+            System.out.println(sql);
             st.executeUpdate(sql);
         } catch (SQLException ex) {
             Dialogs.create().title("SQLException").message("An SQLException occurred...").showException(ex);
@@ -71,11 +76,13 @@ public class UserDAO extends DAO<User> {
                 String name = rs.getString("name");
                 String username = rs.getString("username");
                 String password = rs.getString("password");
+                String email = rs.getString("email");
+                String phone = rs.getString("phone");
                 boolean administrator = false;
-                if(rs.getInt("administrator") == 1) {
+                if (rs.getInt("administrator") == 1) {
                     administrator = true;
                 }
-                User u = new User(id, name, username, password, administrator);
+                User u = new User(id, name, username, password, email, phone, administrator);
                 objects.add(u);
             }
         } catch (SQLException ex) {
@@ -91,7 +98,7 @@ public class UserDAO extends DAO<User> {
 
             int id = target.getId();
 
-            String sql = "DELETE FROM user WHERE id="+id+";";
+            String sql = "DELETE FROM user WHERE id=" + id + ";";
             st.executeUpdate(sql);
         } catch (SQLException ex) {
             Dialogs.create().title("SQLException").message("An SQLException occurred...").showException(ex);

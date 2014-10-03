@@ -42,20 +42,42 @@ public class LoginViewController extends View implements Initializable {
         pane.setOpacity(0.0);
     }
 
+    private boolean validate() {
+        usernameTF.setStyle("");
+        passwordTF.setStyle("");
+
+        if (!usernameTF.getText().isEmpty()) {
+            if (!passwordTF.getText().isEmpty()) {
+                return true;
+            } else {
+                Dialogs.create().owner(viewController.primaryStage).title("Login failed").message("Password can not be empty...").showWarning();
+                passwordTF.setStyle("-fx-background: red");
+            }
+        } else {
+            Dialogs.create().owner(viewController.primaryStage).title("Login failed").message("Username can not be empty...").showWarning();
+            usernameTF.setStyle("-fx-background: red");
+        }
+        return false;
+    }
+
     @FXML
     private void handleGo() {
-        String username = usernameTF.getText();
-        String password = passwordTF.getText();
-        User user = viewController.userRegister.get(username, password);
-        
-        if(user == null) {
-            Dialogs.create().owner(viewController.primaryStage).title("Login failed").message("Username or password is wrong...").showWarning();
-        } else {
-            viewController.setLoggedInUser(user);
-            if(user.isAdministrator()) {
-                viewController.showAdminMenuView();
+        if (validate()) {
+            String username = usernameTF.getText();
+            String password = passwordTF.getText();
+            User user = viewController.userRegister.get(username, password);
+
+            if (user == null) {
+                Dialogs.create().owner(viewController.primaryStage).title("Login failed").message("Username or password is wrong...").showWarning();
+                usernameTF.setStyle("-fx-background: orange");
+                passwordTF.setStyle("-fx-background: orange");
             } else {
-                viewController.showNewShiftWizard();
+                viewController.setLoggedInUser(user);
+                if (user.isAdministrator()) {
+                    viewController.showAdminMenuView(0);
+                } else {
+                    viewController.showNewShiftWizard();
+                }
             }
         }
     }

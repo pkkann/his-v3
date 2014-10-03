@@ -37,12 +37,10 @@ public abstract class Register<DTYPE extends ModelClass> {
     
     /**
      * Updates an object
-     * @param target
      * @param source 
      */
-    public void update(DTYPE target, DTYPE source) {
-        objects.set(objects.indexOf(target), source);
-        dao.update(target, source);
+    public void update(DTYPE source) {
+        dao.update(source);
         DBUtil.close();
     }
     

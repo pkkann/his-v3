@@ -15,13 +15,17 @@ public class User extends ModelClass {
     private final StringProperty name;
     private final StringProperty username;
     private final StringProperty password;
+    private final StringProperty email;
+    private final StringProperty phone;
     private final BooleanProperty administrator;
 
-    public User(int id, String name, String username, String password, boolean administrator) {
+    public User(int id, String name, String username, String password, String email, String phone, boolean administrator) {
         super(id);
         this.name = new SimpleStringProperty(name);
         this.username = new SimpleStringProperty(username);
         this.password = new SimpleStringProperty(password);
+        this.email = new SimpleStringProperty(email);
+        this.phone = new SimpleStringProperty(phone);
         this.administrator = new SimpleBooleanProperty(administrator);
     }
 
@@ -49,6 +53,22 @@ public class User extends ModelClass {
         this.password.set(password);
     }
     
+    public String getEmail() {
+        return this.email.get();
+    }
+    
+    public void setEmail(String email) {
+        this.email.set(email);
+    }
+    
+    public String getPhone() {
+        return this.phone.get();
+    }
+    
+    public void setPhone(String phone) {
+        this.phone.set(phone);
+    }
+    
     public boolean isAdministrator() {
         return this.administrator.get();
     }
@@ -67,6 +87,14 @@ public class User extends ModelClass {
 
     public StringProperty getPasswordProperty() {
         return this.password;
+    }
+    
+    public StringProperty getEmailProperty() {
+        return this.email;
+    }
+    
+    public StringProperty getPhoneProperty() {
+        return this.phone;
     }
     
     public BooleanProperty isAdministratorProperty() {

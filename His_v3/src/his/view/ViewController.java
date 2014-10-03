@@ -7,6 +7,7 @@ import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCombination;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -27,8 +28,6 @@ public class ViewController {
     private ViewWrapperController wrapperController;
     private View currentController;
 
-    private User loggedInUser;
-
     public ViewController(Stage primaryStage, UserRegister userRegister) {
         this.primaryStage = primaryStage;
         this.userRegister = userRegister;
@@ -39,8 +38,8 @@ public class ViewController {
         initViewWrapper();
         this.primaryStage.setFullScreenExitHint("");
         this.primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
-        this.primaryStage.setMinWidth(1044);
-        this.primaryStage.setMinHeight(808);
+        this.primaryStage.setMinWidth(1040);
+        this.primaryStage.setMinHeight(730);
         this.primaryStage.setTitle(his.His.title);
         this.primaryStage.setMaximized(true);
         this.primaryStage.show();
@@ -48,9 +47,9 @@ public class ViewController {
 
     public void setLoggedInUser(User u) {
         if (wrapperController != null) {
-            this.loggedInUser = u;
-            if (this.loggedInUser != null) {
-                wrapperController.setLoggedInLText(this.loggedInUser.getName());
+            if (u != null) {
+                userRegister.setLoggedInUser(u);
+                wrapperController.setLoggedInLText(userRegister.getLoggedInUser().getName());
                 wrapperController.setEditProfileBTNDisabled(false);
                 wrapperController.setLogoutBTNDisabled(false);
             } else {
@@ -180,7 +179,7 @@ public class ViewController {
         }
     }
 
-    public void showAdminMenuView() {
+    public void showAdminMenuView(int selection) {
         if (this.primaryStage.isShowing()) {
             try {
                 FXMLLoader loader = new FXMLLoader();
@@ -189,8 +188,11 @@ public class ViewController {
 
                 AdminMenuViewController controller = loader.getController();
                 controller.setViewController(this);
+                controller.loadTabs(selection);
                 setCenterView(pane, controller);
+                
                 setViewTitle("Administrators menu");
+                
             } catch (IOException e) {
                 Dialogs.create().title("Failed to load").message("Failed to load view...\nContact administrator").showError();
                 if (ConfigHandler.getInstance().getDebug()) {
@@ -200,7 +202,7 @@ public class ViewController {
         }
     }
 
-    public void showManageUsersView() {
+    public StackPane constructManageUsersView() {
         if (this.primaryStage.isShowing()) {
             try {
                 FXMLLoader loader = new FXMLLoader();
@@ -209,9 +211,52 @@ public class ViewController {
 
                 ManageUsersViewController controller = loader.getController();
                 controller.setViewController(this);
-                setCenterView(pane, controller);
-                setViewTitle("Manage users");
+                //setCenterView(pane, controller);
+                //setViewTitle("Manage users");
                 controller.loadTable();
+                return pane;
+            } catch (IOException e) {
+                Dialogs.create().title("Failed to load").message("Failed to load view...\nContact administrator").showError();
+                if (ConfigHandler.getInstance().getDebug()) {
+                    Dialogs.create().title("IOException").message("An IOException occurred...").showException(e);
+                }
+            }
+        }
+        return null;
+    }
+    
+    public void showCreateUserView() {
+        if (this.primaryStage.isShowing()) {
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(ViewController.class.getResource("CreateUserView.fxml"));
+                AnchorPane pane = (AnchorPane) loader.load();
+
+                CreateUserViewController controller = loader.getController();
+                controller.setViewController(this);
+                setCenterView(pane, controller);
+                setViewTitle("Create user");
+            } catch (IOException e) {
+                Dialogs.create().title("Failed to load").message("Failed to load view...\nContact administrator").showError();
+                if (ConfigHandler.getInstance().getDebug()) {
+                    Dialogs.create().title("IOException").message("An IOException occurred...").showException(e);
+                }
+            }
+        }
+    }
+    
+    public void showEditUserView(User u) {
+        if (this.primaryStage.isShowing()) {
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(ViewController.class.getResource("CreateUserView.fxml"));
+                AnchorPane pane = (AnchorPane) loader.load();
+
+                CreateUserViewController controller = loader.getController();
+                controller.setViewController(this);
+                controller.edit(u);
+                setCenterView(pane, controller);
+                setViewTitle("Edit user");
             } catch (IOException e) {
                 Dialogs.create().title("Failed to load").message("Failed to load view...\nContact administrator").showError();
                 if (ConfigHandler.getInstance().getDebug()) {
@@ -222,7 +267,6 @@ public class ViewController {
     }
 
     private void setCenterView(Pane pane, View controller) {
-        setLoggedInUser(loggedInUser);
         int duration = 300;
         if (this.currentController != null) {
             this.currentController.fadeOut(duration, new Runnable() {

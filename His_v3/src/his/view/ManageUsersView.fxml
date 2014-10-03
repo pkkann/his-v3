@@ -17,6 +17,8 @@
                <columns>
                   <TableColumn fx:id="nameTC" editable="false" prefWidth="75.0" sortable="false" text="Name" />
                   <TableColumn fx:id="usernameTC" editable="false" prefWidth="75.0" sortable="false" text="Username" />
+                  <TableColumn fx:id="emailTC" editable="false" prefWidth="75.0" sortable="false" text="E-mail" />
+                  <TableColumn fx:id="phoneTC" editable="false" prefWidth="75.0" sortable="false" text="Phone" />
                   <TableColumn fx:id="administratorTC" editable="false" maxWidth="2000.0" prefWidth="75.0" sortable="false" text="Administrator" />
                </columns>
             </TableView>
@@ -24,8 +26,6 @@
          <top>
             <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <items>
-                  <Button fx:id="backBTN" mnemonicParsing="false" onAction="#handleBack" />
-                  <Separator maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="20.0" />
                   <Button fx:id="createBTN" mnemonicParsing="false" onAction="#handleCreate" />
                   <Button fx:id="editBTN" disable="true" mnemonicParsing="false" onAction="#handleEdit" />
                   <Button fx:id="deleteBTN" disable="true" mnemonicParsing="false" onAction="#handleDelete" />

@@ -19,7 +19,6 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import org.controlsfx.control.action.Action;
-import org.controlsfx.dialog.Dialog;
 import org.controlsfx.dialog.Dialog.Actions;
 import org.controlsfx.dialog.Dialogs;
 import org.controlsfx.glyphfont.Glyph;
@@ -34,8 +33,6 @@ public class ManageUsersViewController extends View implements Initializable {
     @FXML
     private StackPane pane;
     @FXML
-    private Button backBTN;
-    @FXML
     private Button createBTN;
     @FXML
     private Button editBTN;
@@ -49,29 +46,32 @@ public class ManageUsersViewController extends View implements Initializable {
     @FXML
     private TableColumn<User, String> usernameTC;
     @FXML
+    private TableColumn<User, String> emailTC;
+    @FXML
+    private TableColumn<User, String> phoneTC;
+    @FXML
     private TableColumn<User, Boolean> administratorTC;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         super.setPane(pane);
 
-        backBTN.setTooltip(new Tooltip("Back"));
         createBTN.setTooltip(new Tooltip("Create"));
         editBTN.setTooltip(new Tooltip("Edit"));
         deleteBTN.setTooltip(new Tooltip("Delete"));
 
-        Glyph gBack = ResourceManager.getGlyph("default", 'j', Color.WHITE, 16);
         Glyph gCreate = ResourceManager.getGlyph("default", 'h', Color.WHITE, 16);
         Glyph gEdit = ResourceManager.getGlyph("default", 'g', Color.WHITE, 16);
         Glyph gDelete = ResourceManager.getGlyph("default", 'i', Color.WHITE, 16);
 
-        backBTN.setGraphic(gBack);
         createBTN.setGraphic(gCreate);
         editBTN.setGraphic(gEdit);
         deleteBTN.setGraphic(gDelete);
 
         nameTC.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
         usernameTC.setCellValueFactory(cellData -> cellData.getValue().getUsernameProperty());
+        emailTC.setCellValueFactory(cellData -> cellData.getValue().getEmailProperty());
+        phoneTC.setCellValueFactory(cellData -> cellData.getValue().getPhoneProperty());
         administratorTC.setCellValueFactory(cellData -> cellData.getValue().isAdministratorProperty());
 
         usersTV.getSelectionModel().selectedItemProperty().addListener(
@@ -79,8 +79,13 @@ public class ManageUsersViewController extends View implements Initializable {
     }
 
     private void userSelected(User u) {
-        editBTN.setDisable(false);
-        deleteBTN.setDisable(false);
+        if (u != viewController.userRegister.getLoggedInUser()) {
+            editBTN.setDisable(false);
+            deleteBTN.setDisable(false);
+        } else {
+            editBTN.setDisable(true);
+            deleteBTN.setDisable(true);
+        }
     }
 
     public void loadTable() {
@@ -88,18 +93,14 @@ public class ManageUsersViewController extends View implements Initializable {
     }
 
     @FXML
-    private void handleBack() {
-        viewController.showAdminMenuView();
-    }
-
-    @FXML
     private void handleCreate() {
-
+        viewController.showCreateUserView();
     }
 
     @FXML
     private void handleEdit() {
-
+        User u = usersTV.getSelectionModel().getSelectedItem();
+        viewController.showEditUserView(u);
     }
 
     @FXML

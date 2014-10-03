@@ -9,14 +9,33 @@ import his.dao.DAO;
  * @author Patrick
  */
 public class UserRegister extends Register<User> {
+    
+    private User loggedInUser;
 
     public UserRegister(DAO<User> dao, IDHandler idHandler) {
         super(dao, idHandler);
     }
     
-    public void create(String name, String username, String password, boolean administrator) {
+    public void setLoggedInUser(User loggedInUser) {
+        this.loggedInUser = loggedInUser;
+    }
+    
+    public User getLoggedInUser() {
+        return this.loggedInUser;
+    }
+    
+    public boolean isUsernameFree(String username) {
+        for(User u : objects) {
+            if(u.getUsername().equals(username)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    public void create(String name, String username, String password, String email, String phone, boolean administrator) {
         int id = idHandler.getNextUserId();
-        User u = new User(id, name, username, password, administrator);
+        User u = new User(id, name, username, password, email, phone, administrator);
         insert(u);
     }
     

@@ -12,7 +12,7 @@ public abstract class DAO<DTYPE> {
     
     public abstract void insert(DTYPE source);
     
-    public abstract void update(DTYPE target, DTYPE source);
+    public abstract void update(DTYPE source);
     
     public abstract ArrayList<DTYPE> selectAll();
     
