@@ -1,6 +1,7 @@
 package his.control;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -46,8 +47,19 @@ public class ConfigHandler {
             }
         }
         
+        private void save() {
+            try {
+                FileOutputStream output = new FileOutputStream(configURL);
+                prop.store(output, "");
+            } catch (IOException ex) {
+                Dialogs.create().title("Error").message("An error happened, trying to save config...\nContact an administrator").showError();
+                
+            }
+        }
+        
         public void setDebug(boolean value) {
-            prop.put("debug", value);
+            prop.put("debug", String.valueOf(value));
+            save();
         }
         
         public boolean getDebug() {
@@ -60,7 +72,8 @@ public class ConfigHandler {
         }
         
         public void setFullscreen(boolean value) {
-            prop.put("fullscreen", value);
+            prop.put("fullscreen", String.valueOf(value));
+            save();
         }
         
         public boolean getFullscreen() {

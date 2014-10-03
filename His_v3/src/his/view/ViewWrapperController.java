@@ -47,7 +47,7 @@ public class ViewWrapperController implements Initializable {
     private Button helpBTN;
     @FXML
     private Button editProfileBTN;
-    
+
     @FXML
     private Label loggedInL;
 
@@ -62,15 +62,15 @@ public class ViewWrapperController implements Initializable {
     public void setLogoutBTNDisabled(boolean disabled) {
         this.logoutBTN.setDisable(disabled);
     }
-    
+
     public void setEditProfileBTNDisabled(boolean disabled) {
         this.editProfileBTN.setDisable(disabled);
     }
-    
+
     public void setLoggedInLText(String text) {
         this.loggedInL.setText(text);
     }
-    
+
     public void setTitleLText(String text) {
         this.titleL.setText(text);
     }
@@ -95,18 +95,10 @@ public class ViewWrapperController implements Initializable {
         fullscreenToggleBTN.setGraphic(gExpand);
         logoutBTN.setGraphic(gLogout);
         helpBTN.setGraphic(gHelp);
-
-        closeBTNTrans = new FadeTransition(Duration.millis(300), closeBTN);
-        closeBTNTrans.setFromValue(0.0);
-        closeBTNTrans.setToValue(0.0);
-        closeBTNTrans.play();
-        closeBTN.setDisable(true);
-
+        
         minimizeBTNTrans = new FadeTransition(Duration.millis(300), minimizeBTN);
-        minimizeBTNTrans.setFromValue(0.0);
-        minimizeBTNTrans.setToValue(0.0);
-        minimizeBTNTrans.play();
-        minimizeBTN.setDisable(true);
+        closeBTNTrans = new FadeTransition(Duration.millis(300), closeBTN);
+        
 
 //        topPane.setOnMousePressed(new EventHandler<MouseEvent>() {
 //
@@ -129,6 +121,18 @@ public class ViewWrapperController implements Initializable {
 //                }
 //            }
 //        });
+    }
+    
+    public void initButtons() {
+        if (!viewController.isFullscreen()) {
+            closeBTN.setOpacity(0.0);
+            closeBTN.setDisable(true);
+        }
+
+        if (!viewController.isFullscreen()) {
+            minimizeBTN.setOpacity(0.0);
+            minimizeBTN.setDisable(true);
+        }
     }
 
     private void fadeInMinimizeBTN() {

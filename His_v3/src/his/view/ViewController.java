@@ -35,13 +35,20 @@ public class ViewController {
     }
 
     private void init() {
-        initViewWrapper();
+        
+        
+        
         this.primaryStage.setFullScreenExitHint("");
         this.primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
         this.primaryStage.setMinWidth(1040);
         this.primaryStage.setMinHeight(730);
         this.primaryStage.setTitle(his.His.title);
         this.primaryStage.setMaximized(true);
+        if(ConfigHandler.getInstance().getFullscreen()) {
+            this.primaryStage.setFullScreen(true);
+        }
+        initViewWrapper();
+        
         this.primaryStage.show();
     }
 
@@ -103,6 +110,7 @@ public class ViewController {
             Scene scene = new Scene(pane);
             ViewWrapperController controller = loader.getController();
             controller.setViewController(this);
+            controller.initButtons();
 
             this.wrapperController = controller;
 
@@ -214,6 +222,28 @@ public class ViewController {
                 //setCenterView(pane, controller);
                 //setViewTitle("Manage users");
                 controller.loadTable();
+                return pane;
+            } catch (IOException e) {
+                Dialogs.create().title("Failed to load").message("Failed to load view...\nContact administrator").showError();
+                if (ConfigHandler.getInstance().getDebug()) {
+                    Dialogs.create().title("IOException").message("An IOException occurred...").showException(e);
+                }
+            }
+        }
+        return null;
+    }
+    
+    public StackPane constructSettingsView() {
+        if (this.primaryStage.isShowing()) {
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(ViewController.class.getResource("SettingsView.fxml"));
+                StackPane pane = (StackPane) loader.load();
+
+                SettingsViewController controller = loader.getController();
+                controller.setViewController(this);
+                //setCenterView(pane, controller);
+                //setViewTitle("Manage users");
                 return pane;
             } catch (IOException e) {
                 Dialogs.create().title("Failed to load").message("Failed to load view...\nContact administrator").showError();
