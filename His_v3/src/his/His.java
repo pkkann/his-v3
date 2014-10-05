@@ -28,6 +28,8 @@ public class His extends Application {
 
     private UserDAO userDAO;
     private UserRegister userRegister;
+    private ShiftDAO shiftDAO;
+    private ShiftRegister shiftRegister;
 
     private ViewController viewController;
     private ResourceManager resourceManager;
@@ -74,10 +76,13 @@ public class His extends Application {
 
         userDAO = new UserDAO();
         userRegister = new UserRegister(userDAO, idHandler);
+        shiftDAO = new ShiftDAO();
+        shiftRegister = new ShiftRegister(shiftDAO, idHandler);
 
         userRegister.loadRegister();
+        shiftRegister.loadRegister();
         DBUtil.close();
-        idHandler.init(userRegister);
+        idHandler.init(userRegister, shiftRegister);
     }
 
     private void registerGlyphs() {

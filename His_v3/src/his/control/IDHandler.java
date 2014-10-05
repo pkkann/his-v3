@@ -1,6 +1,8 @@
 
 package his.control;
 
+import his.model.Shift;
+import his.model.ShiftRegister;
 import his.model.User;
 import his.model.UserRegister;
 
@@ -11,15 +13,19 @@ import his.model.UserRegister;
 public class IDHandler {
     
     private int currentUserId;
+    private int currentShiftId;
     
     private UserRegister userRegister;
+    private ShiftRegister shiftRegister;
     
     /**
      * This method should be called after all registers have loaded
      * @param userRegister 
+     * @param shiftRegister 
      */
-    public void init(UserRegister userRegister) {
+    public void init(UserRegister userRegister, ShiftRegister shiftRegister) {
         this.userRegister = userRegister;
+        this.shiftRegister = shiftRegister;
         refresh();
     }
     
@@ -33,6 +39,12 @@ public class IDHandler {
                 currentUserId = u.getId();
             }
         }
+        
+        for(Shift s : shiftRegister.getObjects()) {
+            if(s.getId() > currentShiftId) {
+                currentShiftId = s.getId();
+            }
+        }
     }
     
     public int getNextUserId() {
@@ -42,6 +54,15 @@ public class IDHandler {
     
     public int getCurrentUserId() {
         return currentUserId;
+    }
+    
+    public int getNextShiftId() {
+        this.currentShiftId++;
+        return currentShiftId;
+    }
+    
+    public int getCurrentShiftId() {
+        return currentShiftId;
     }
 
 }
