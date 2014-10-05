@@ -1,29 +1,30 @@
 
 package his.dao;
 
+import his.model.Shift;
 import java.util.ArrayList;
 
 /**
  *
  * @author Patrick
  */
-public class ShiftDAO extends DAO {
+public class ShiftDAO extends DAO<Shift> {
 
     @Override
-    public void insert(Object source) {
+    public void insert(Shift source) {
     }
 
     @Override
-    public void update(Object source) {
+    public void update(Shift source) {
     }
 
     @Override
-    public ArrayList selectAll() {
-        return null;
+    public ArrayList<Shift> selectAll() {
+        return new ArrayList<>();
     }
 
     @Override
-    public void delete(Object target) {
+    public void delete(Shift target) {
     }
 
 }
