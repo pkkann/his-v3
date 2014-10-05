@@ -29,7 +29,7 @@
                   <Button fx:id="createBTN" mnemonicParsing="false" onAction="#handleCreate" />
                   <Button fx:id="editBTN" disable="true" mnemonicParsing="false" onAction="#handleEdit" />
                   <Button fx:id="deleteBTN" disable="true" mnemonicParsing="false" onAction="#handleDelete" />
-                  <TextField promptText="Search user..." />
+                  <TextField fx:id="searchTF" prefWidth="255.0" promptText="Search user..." />
                </items>
             </ToolBar>
          </top>

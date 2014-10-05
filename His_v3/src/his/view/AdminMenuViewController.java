@@ -40,6 +40,7 @@ public class AdminMenuViewController extends View implements Initializable {
 
     public void loadTabs(int selection) {
         usersT.setContent(viewController.constructManageUsersView());
+        shiftsT.setContent(viewController.constructManageShiftsView());
         settingsT.setContent(viewController.constructSettingsView());
         
         if(selection != 0) {

@@ -4,26 +4,14 @@ import his.control.ConfigHandler;
 import his.model.User;
 import his.model.UserRegister;
 import java.io.IOException;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import org.controlsfx.control.ButtonBar;
-import org.controlsfx.control.ButtonBar.ButtonType;
-import org.controlsfx.control.action.AbstractAction;
-import org.controlsfx.control.action.Action;
-import org.controlsfx.dialog.Dialog;
 import org.controlsfx.dialog.Dialogs;
 
 /**
@@ -227,6 +215,29 @@ public class ViewController {
                 StackPane pane = (StackPane) loader.load();
 
                 ManageUsersViewController controller = loader.getController();
+                controller.setViewController(this);
+                //setCenterView(pane, controller);
+                //setViewTitle("Manage users");
+                controller.loadTable();
+                return pane;
+            } catch (IOException e) {
+                Dialogs.create().title("Failed to load").message("Failed to load view...\nContact administrator").showError();
+                if (ConfigHandler.getInstance().getDebug()) {
+                    Dialogs.create().title("IOException").message("An IOException occurred...").showException(e);
+                }
+            }
+        }
+        return null;
+    }
+    
+    public StackPane constructManageShiftsView() {
+        if (this.primaryStage.isShowing()) {
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(ViewController.class.getResource("ManageShiftsView.fxml"));
+                StackPane pane = (StackPane) loader.load();
+
+                ManageShiftsViewController controller = loader.getController();
                 controller.setViewController(this);
                 //setCenterView(pane, controller);
                 //setViewTitle("Manage users");
