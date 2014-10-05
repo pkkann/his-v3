@@ -4,14 +4,26 @@ import his.control.ConfigHandler;
 import his.model.User;
 import his.model.UserRegister;
 import java.io.IOException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import org.controlsfx.control.ButtonBar;
+import org.controlsfx.control.ButtonBar.ButtonType;
+import org.controlsfx.control.action.AbstractAction;
+import org.controlsfx.control.action.Action;
+import org.controlsfx.dialog.Dialog;
 import org.controlsfx.dialog.Dialogs;
 
 /**
@@ -35,20 +47,17 @@ public class ViewController {
     }
 
     private void init() {
-        
-        
-        
         this.primaryStage.setFullScreenExitHint("");
         this.primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
         this.primaryStage.setMinWidth(1040);
         this.primaryStage.setMinHeight(730);
         this.primaryStage.setTitle(his.His.title);
         this.primaryStage.setMaximized(true);
-        if(ConfigHandler.getInstance().getFullscreen()) {
+        if (ConfigHandler.getInstance().getFullscreen()) {
             this.primaryStage.setFullScreen(true);
         }
         initViewWrapper();
-        
+
         this.primaryStage.show();
     }
 
@@ -56,11 +65,11 @@ public class ViewController {
         if (wrapperController != null) {
             if (u != null) {
                 userRegister.setLoggedInUser(u);
-                wrapperController.setLoggedInLText(userRegister.getLoggedInUser().getName());
+                wrapperController.bindLoggedInL(true);
                 wrapperController.setEditProfileBTNDisabled(false);
                 wrapperController.setLogoutBTNDisabled(false);
             } else {
-                wrapperController.setLoggedInLText("None");
+                wrapperController.bindLoggedInL(false);
                 wrapperController.setEditProfileBTNDisabled(true);
                 wrapperController.setLogoutBTNDisabled(true);
             }
@@ -198,9 +207,9 @@ public class ViewController {
                 controller.setViewController(this);
                 controller.loadTabs(selection);
                 setCenterView(pane, controller);
-                
+
                 setViewTitle("Administrators menu");
-                
+
             } catch (IOException e) {
                 Dialogs.create().title("Failed to load").message("Failed to load view...\nContact administrator").showError();
                 if (ConfigHandler.getInstance().getDebug()) {
@@ -232,7 +241,7 @@ public class ViewController {
         }
         return null;
     }
-    
+
     public StackPane constructSettingsView() {
         if (this.primaryStage.isShowing()) {
             try {
@@ -254,7 +263,7 @@ public class ViewController {
         }
         return null;
     }
-    
+
     public void showCreateUserView() {
         if (this.primaryStage.isShowing()) {
             try {
@@ -274,7 +283,7 @@ public class ViewController {
             }
         }
     }
-    
+
     public void showEditUserView(User u) {
         if (this.primaryStage.isShowing()) {
             try {
@@ -294,6 +303,10 @@ public class ViewController {
                 }
             }
         }
+    }
+
+    public void showEditProfileDialog(User u) {
+        EditProfileDialog epd = new EditProfileDialog(this, u);
     }
 
     private void setCenterView(Pane pane, View controller) {

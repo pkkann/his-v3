@@ -91,7 +91,7 @@
                         <Insets right="10.0" />
                      </padding>
                   </Label>
-                  <Button fx:id="editProfileBTN" mnemonicParsing="false" text="Edit profile" />
+                  <Button fx:id="editProfileBTN" mnemonicParsing="false" onAction="#handleEditProfile" text="Edit profile" />
                </children>
             </HBox>
          </children>

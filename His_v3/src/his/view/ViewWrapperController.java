@@ -6,6 +6,7 @@
 package his.view;
 
 import his.control.ResourceManager;
+import his.model.User;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.FadeTransition;
@@ -67,8 +68,13 @@ public class ViewWrapperController implements Initializable {
         this.editProfileBTN.setDisable(disabled);
     }
 
-    public void setLoggedInLText(String text) {
-        this.loggedInL.setText(text);
+    public void bindLoggedInL(boolean bind) {
+        if(bind) {
+            this.loggedInL.textProperty().bind(viewController.userRegister.getLoggedInUser().getNameProperty());
+        } else {
+            this.loggedInL.textProperty().unbind();
+            this.loggedInL.setText("None");
+        }
     }
 
     public void setTitleLText(String text) {
@@ -199,6 +205,11 @@ public class ViewWrapperController implements Initializable {
     @FXML
     private void handleHelp() {
 
+    }
+    
+    @FXML
+    private void handleEditProfile() {
+        viewController.showEditProfileDialog(viewController.userRegister.getLoggedInUser());
     }
 
 }

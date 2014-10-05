@@ -46,7 +46,7 @@ public class His extends Application {
             public void run() {
                 registerGlyphs();
                 viewController = new ViewController(primaryStage, userRegister);
-                viewController.showAdminMenuView(0);
+                viewController.showLoginView();
             }
         }, new Runnable() {
 
