@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import org.controlsfx.dialog.Dialogs;
 
 /**
  *
@@ -32,9 +31,7 @@ public class UserDAO extends DAO<User> {
 
             String sql = "INSERT INTO user (id, name, username, password, email, phone, administrator) VALUES(" + id + ", '" + name + "', '" + username + "', '" + password + "', '" + email + "', '" + phone + "', " + administrator + ");";
             st.execute(sql);
-        } catch (SQLException ex) {
-            Dialogs.create().title("SQLException").message("An SQLException occurred...").showException(ex);
-        }
+        } catch (SQLException ex) {}
     }
 
     @Override
@@ -56,9 +53,7 @@ public class UserDAO extends DAO<User> {
             String sql = "UPDATE user SET name='" + name + "', username='" + username + "', password='" + password + "', email='" + email + "', phone='" + phone + "', administrator=" + administrator + " WHERE id=" + id + ";";
             System.out.println(sql);
             st.executeUpdate(sql);
-        } catch (SQLException ex) {
-            Dialogs.create().title("SQLException").message("An SQLException occurred...").showException(ex);
-        }
+        } catch (SQLException ex) {}
     }
 
     @Override
@@ -85,9 +80,7 @@ public class UserDAO extends DAO<User> {
                 User u = new User(id, name, username, password, email, phone, administrator);
                 objects.add(u);
             }
-        } catch (SQLException ex) {
-            Dialogs.create().title("SQLException").message("An SQLException occurred...").showException(ex);
-        }
+        } catch (SQLException ex) {}
         return objects;
     }
 
@@ -100,9 +93,7 @@ public class UserDAO extends DAO<User> {
 
             String sql = "DELETE FROM user WHERE id=" + id + ";";
             st.executeUpdate(sql);
-        } catch (SQLException ex) {
-            Dialogs.create().title("SQLException").message("An SQLException occurred...").showException(ex);
-        }
+        } catch (SQLException ex) {}
     }
 
 }
