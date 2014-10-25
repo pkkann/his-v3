@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="455.0" prefWidth="600.0" stylesheets="@../../res/default.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="his.view.chooseevents.ChooseEventsViewController">
+   <children>
+      <Group>
+         <children>
+            <VBox spacing="40.0">
+               <children>
+                  <HBox alignment="CENTER" spacing="40.0">
+                     <children>
+                        <VBox spacing="5.0">
+                           <children>
+                              <Label text="All events" />
+                              <ListView prefHeight="200.0" prefWidth="150.0" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" spacing="40.0">
+                           <children>
+                              <Button mnemonicParsing="false" prefWidth="80.0" text="Add -&gt;" />
+                              <Button mnemonicParsing="false" prefWidth="80.0" text="&lt;- Remove" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="5.0">
+                           <children>
+                              <Label text="Chosen events" />
+                              <ListView prefHeight="200.0" prefWidth="150.0" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </Group>
+   </children>
+</StackPane>

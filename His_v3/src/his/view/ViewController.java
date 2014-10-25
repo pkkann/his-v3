@@ -1,5 +1,15 @@
 package his.view;
 
+import his.view.dialogs.EditProfileDialog;
+import his.view.createuser.CreateUserViewController;
+import his.view.login.LoginViewController;
+import his.view.main.MainViewController;
+import his.view.manageshifts.ManageShiftsViewController;
+import his.view.manageusers.ManageUsersViewController;
+import his.view.newshiftwizardwrapper.NewShiftWizardWrapperController;
+import his.view.settings.SettingsViewController;
+import his.view.viewwrapper.ViewWrapperController;
+import his.view.adminmenu.AdminMenuViewController;
 import his.control.ConfigHandler;
 import his.model.User;
 import his.model.UserRegister;
@@ -37,10 +47,9 @@ public class ViewController {
     private void init() {
         this.primaryStage.setFullScreenExitHint("");
         this.primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
-        this.primaryStage.setMinWidth(1040);
+        this.primaryStage.setMinWidth(1000);
         this.primaryStage.setMinHeight(730);
         this.primaryStage.setTitle(his.His.title);
-        this.primaryStage.setMaximized(true);
         if (ConfigHandler.getInstance().getFullscreen()) {
             this.primaryStage.setFullScreen(true);
         }
@@ -101,7 +110,7 @@ public class ViewController {
     private void initViewWrapper() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(ViewController.class.getResource("ViewWrapper.fxml"));
+            loader.setLocation(ViewController.class.getResource("viewwrapper/ViewWrapper.fxml"));
             BorderPane pane = (BorderPane) loader.load();
 
             Scene scene = new Scene(pane);
@@ -125,7 +134,7 @@ public class ViewController {
         if (this.primaryStage.isShowing()) {
             try {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(ViewController.class.getResource("MainView.fxml"));
+                loader.setLocation(ViewController.class.getResource("main/MainView.fxml"));
                 StackPane pane = (StackPane) loader.load();
 
                 MainViewController controller = loader.getController();
@@ -146,7 +155,7 @@ public class ViewController {
         if (this.primaryStage.isShowing()) {
             try {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(ViewController.class.getResource("LoginView.fxml"));
+                loader.setLocation(ViewController.class.getResource("login/LoginView.fxml"));
                 StackPane pane = (StackPane) loader.load();
 
                 LoginViewController controller = loader.getController();
@@ -167,7 +176,7 @@ public class ViewController {
         if (this.primaryStage.isShowing()) {
             try {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(ViewController.class.getResource("NewShiftWizardWrapper.fxml"));
+                loader.setLocation(ViewController.class.getResource("newshiftwizardwrapper/NewShiftWizardWrapper.fxml"));
                 BorderPane pane = (BorderPane) loader.load();
 
                 NewShiftWizardWrapperController controller = loader.getController();
@@ -188,7 +197,7 @@ public class ViewController {
         if (this.primaryStage.isShowing()) {
             try {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(ViewController.class.getResource("AdminMenuView.fxml"));
+                loader.setLocation(ViewController.class.getResource("adminmenu/AdminMenuView.fxml"));
                 StackPane pane = (StackPane) loader.load();
 
                 AdminMenuViewController controller = loader.getController();
@@ -211,7 +220,7 @@ public class ViewController {
         if (this.primaryStage.isShowing()) {
             try {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(ViewController.class.getResource("ManageUsersView.fxml"));
+                loader.setLocation(ViewController.class.getResource("manageusers/ManageUsersView.fxml"));
                 StackPane pane = (StackPane) loader.load();
 
                 ManageUsersViewController controller = loader.getController();
@@ -234,7 +243,7 @@ public class ViewController {
         if (this.primaryStage.isShowing()) {
             try {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(ViewController.class.getResource("ManageShiftsView.fxml"));
+                loader.setLocation(ViewController.class.getResource("manageshifts/ManageShiftsView.fxml"));
                 StackPane pane = (StackPane) loader.load();
 
                 ManageShiftsViewController controller = loader.getController();
@@ -257,7 +266,7 @@ public class ViewController {
         if (this.primaryStage.isShowing()) {
             try {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(ViewController.class.getResource("SettingsView.fxml"));
+                loader.setLocation(ViewController.class.getResource("settings/SettingsView.fxml"));
                 StackPane pane = (StackPane) loader.load();
 
                 SettingsViewController controller = loader.getController();
@@ -279,7 +288,7 @@ public class ViewController {
         if (this.primaryStage.isShowing()) {
             try {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(ViewController.class.getResource("CreateUserView.fxml"));
+                loader.setLocation(ViewController.class.getResource("createuser/CreateUserView.fxml"));
                 AnchorPane pane = (AnchorPane) loader.load();
 
                 CreateUserViewController controller = loader.getController();
@@ -299,7 +308,7 @@ public class ViewController {
         if (this.primaryStage.isShowing()) {
             try {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(ViewController.class.getResource("CreateUserView.fxml"));
+                loader.setLocation(ViewController.class.getResource("createuser/CreateUserView.fxml"));
                 AnchorPane pane = (AnchorPane) loader.load();
 
                 CreateUserViewController controller = loader.getController();
