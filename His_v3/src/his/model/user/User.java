@@ -19,7 +19,7 @@ public class User extends ModelClass {
     private final StringProperty email;
     private final StringProperty phone;
     private final BooleanProperty administrator;
-
+    
     public User(int id, long creationDate, String name, String username, String password, String email, String phone, boolean administrator) {
         super(id, creationDate);
         this.name = new SimpleStringProperty(name);

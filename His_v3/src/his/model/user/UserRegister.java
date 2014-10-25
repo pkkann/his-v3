@@ -1,4 +1,3 @@
-
 package his.model.user;
 
 import his.control.IDHandler;

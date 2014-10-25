@@ -23,8 +23,8 @@
                         </VBox>
                         <VBox alignment="CENTER" spacing="40.0">
                            <children>
-                              <Button mnemonicParsing="false" prefWidth="80.0" text="Add -&gt;" />
-                              <Button mnemonicParsing="false" prefWidth="80.0" text="&lt;- Remove" />
+                              <Button mnemonicParsing="false" prefWidth="90.0" text="Add -&gt;" />
+                              <Button mnemonicParsing="false" prefWidth="90.0" text="&lt;- Remove" />
                            </children>
                         </VBox>
                         <VBox spacing="5.0">
