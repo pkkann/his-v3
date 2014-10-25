@@ -11,6 +11,7 @@ import his.util.Loader;
 import his.view.View;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.property.LongProperty;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
@@ -57,6 +58,8 @@ public class ManageUsersViewController extends View implements Initializable {
     private TableColumn<User, String> phoneTC;
     @FXML
     private TableColumn<User, Boolean> administratorTC;
+    @FXML
+    private TableColumn<User, Long> createdTC;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -79,6 +82,7 @@ public class ManageUsersViewController extends View implements Initializable {
         emailTC.setCellValueFactory(cellData -> cellData.getValue().getEmailProperty());
         phoneTC.setCellValueFactory(cellData -> cellData.getValue().getPhoneProperty());
         administratorTC.setCellValueFactory(cellData -> cellData.getValue().isAdministratorProperty());
+        createdTC.setCellValueFactory(cellData -> cellData.getValue().getCreateDateProperty());
 
         usersTV.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> userSelected(newValue));

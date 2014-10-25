@@ -3,8 +3,11 @@ package his.model;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.LongProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleLongProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ObservableValue;
 
 /**
  *
@@ -13,11 +16,11 @@ import javafx.beans.property.SimpleLongProperty;
 public abstract class ModelClass {
     
     private final IntegerProperty id;
-    private final LongProperty createDate;
+    private final ObjectProperty<Long> createDate;
     
     public ModelClass(int id, long createDate) {
         this.id = new SimpleIntegerProperty(id);
-        this.createDate = new SimpleLongProperty(createDate);
+        this.createDate = new SimpleObjectProperty<>(createDate);
     }
 
     public int getId() {
@@ -40,7 +43,7 @@ public abstract class ModelClass {
         return id;
     }
     
-    public LongProperty getCreateDateProperty() {
+    public ObjectProperty<Long> getCreateDateProperty() {
         return createDate;
     }
 
