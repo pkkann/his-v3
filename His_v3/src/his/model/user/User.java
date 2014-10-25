@@ -1,6 +1,7 @@
 
-package his.model;
+package his.model.user;
 
+import his.model.ModelClass;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -19,8 +20,8 @@ public class User extends ModelClass {
     private final StringProperty phone;
     private final BooleanProperty administrator;
 
-    public User(int id, String name, String username, String password, String email, String phone, boolean administrator) {
-        super(id);
+    public User(int id, long creationDate, String name, String username, String password, String email, String phone, boolean administrator) {
+        super(id, creationDate);
         this.name = new SimpleStringProperty(name);
         this.username = new SimpleStringProperty(username);
         this.password = new SimpleStringProperty(password);

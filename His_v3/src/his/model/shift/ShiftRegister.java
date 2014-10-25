@@ -1,9 +1,12 @@
 
-package his.model;
+package his.model.shift;
 
+import his.model.user.User;
 import his.control.IDHandler;
 import his.dao.DAO;
+import his.model.Register;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -15,10 +18,12 @@ public class ShiftRegister extends Register<Shift> {
         super(dao, idHandler);
     }
     
-    public void create(ArrayList<User> users, User leader) {
+    public Shift create(ArrayList<User> users, User leader) {
         int id = idHandler.getNextShiftId();
-        Shift shift = new Shift(id, users, leader);
+        long createDate = new Date().getTime();
+        Shift shift = new Shift(id, createDate, users, leader);
         insert(shift);
+        return shift;
     }
 
 }

@@ -1,9 +1,11 @@
 package his;
 
+import his.model.shift.ShiftRegister;
+import his.model.user.UserRegister;
 import his.control.IDHandler;
 import his.control.ResourceManager;
 import his.dao.*;
-import his.model.*;
+import his.model.resident.ResidentRegister;
 import his.util.DBUtil;
 import his.util.Loader;
 import his.view.ViewController;
@@ -30,6 +32,8 @@ public class His extends Application {
     private UserRegister userRegister;
     private ShiftDAO shiftDAO;
     private ShiftRegister shiftRegister;
+    private ResidentDAO residentDAO;
+    private ResidentRegister residentRegister;
 
     private ViewController viewController;
     private ResourceManager resourceManager;
@@ -78,11 +82,16 @@ public class His extends Application {
         userRegister = new UserRegister(userDAO, idHandler);
         shiftDAO = new ShiftDAO();
         shiftRegister = new ShiftRegister(shiftDAO, idHandler);
+        residentDAO = new ResidentDAO();
+        residentRegister = new ResidentRegister(residentDAO, idHandler);
 
         userRegister.loadRegister();
         shiftRegister.loadRegister();
+        residentRegister.loadRegister();
+        
         DBUtil.close();
-        idHandler.init(userRegister, shiftRegister);
+        
+        idHandler.init(userRegister, shiftRegister, residentRegister);
     }
 
     private void registerGlyphs() {

@@ -1,7 +1,7 @@
 package his.view.dialogs;
 
-import his.model.User;
-import his.model.UserRegister;
+import his.model.user.User;
+import his.model.user.UserRegister;
 import his.util.Loader;
 import his.view.ViewController;
 import javafx.event.ActionEvent;

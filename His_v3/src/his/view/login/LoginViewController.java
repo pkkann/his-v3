@@ -5,7 +5,7 @@
  */
 package his.view.login;
 
-import his.model.User;
+import his.model.user.User;
 import his.view.View;
 import java.net.URL;
 import java.util.ResourceBundle;

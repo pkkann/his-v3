@@ -6,7 +6,7 @@
 package his.view.manageusers;
 
 import his.control.ResourceManager;
-import his.model.User;
+import his.model.user.User;
 import his.util.Loader;
 import his.view.View;
 import java.net.URL;

@@ -1,8 +1,10 @@
 
-package his.model;
+package his.model.user;
 
 import his.control.IDHandler;
 import his.dao.DAO;
+import his.model.Register;
+import java.util.Date;
 
 /**
  *
@@ -33,10 +35,12 @@ public class UserRegister extends Register<User> {
         return true;
     }
     
-    public void create(String name, String username, String password, String email, String phone, boolean administrator) {
+    public User create(String name, String username, String password, String email, String phone, boolean administrator) {
         int id = idHandler.getNextUserId();
-        User u = new User(id, name, username, password, email, phone, administrator);
+        long createDate = new Date().getTime();
+        User u = new User(id, createDate, name, username, password, email, phone, administrator);
         insert(u);
+        return u;
     }
     
     /**

@@ -1,6 +1,6 @@
 package his.dao;
 
-import his.model.User;
+import his.model.user.User;
 import his.util.DBUtil;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,6 +19,7 @@ public class UserDAO extends DAO<User> {
             Statement st = DBUtil.getStatement();
 
             int id = source.getId();
+            long createDate = source.getCreateDate();
             String name = source.getName();
             String username = source.getUsername();
             String password = source.getPassword();
@@ -29,7 +30,7 @@ public class UserDAO extends DAO<User> {
                 administrator = 1;
             }
 
-            String sql = "INSERT INTO user (id, name, username, password, email, phone, administrator) VALUES(" + id + ", '" + name + "', '" + username + "', '" + password + "', '" + email + "', '" + phone + "', " + administrator + ");";
+            String sql = "INSERT INTO user (id, createdate, name, username, password, email, phone, administrator) VALUES(" + id + ", "+createDate+", '" + name + "', '" + username + "', '" + password + "', '" + email + "', '" + phone + "', " + administrator + ");";
             st.execute(sql);
         } catch (SQLException ex) {}
     }
@@ -68,6 +69,7 @@ public class UserDAO extends DAO<User> {
 
             while (rs.next()) {
                 int id = rs.getInt("id");
+                long createDate = rs.getLong("createdate");
                 String name = rs.getString("name");
                 String username = rs.getString("username");
                 String password = rs.getString("password");
@@ -77,7 +79,7 @@ public class UserDAO extends DAO<User> {
                 if (rs.getInt("administrator") == 1) {
                     administrator = true;
                 }
-                User u = new User(id, name, username, password, email, phone, administrator);
+                User u = new User(id, createDate, name, username, password, email, phone, administrator);
                 objects.add(u);
             }
         } catch (SQLException ex) {}

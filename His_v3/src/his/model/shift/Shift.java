@@ -1,6 +1,8 @@
 
-package his.model;
+package his.model.shift;
 
+import his.model.ModelClass;
+import his.model.user.User;
 import java.util.ArrayList;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ObjectProperty;
@@ -19,8 +21,8 @@ public class Shift extends ModelClass {
     private final ObjectProperty<User> leader;
     private final BooleanProperty closed;
 
-    public Shift(int id, ArrayList<User> users, User leader) {
-        super(id);
+    public Shift(int id, long createDate, ArrayList<User> users, User leader) {
+        super(id, createDate);
         this.users = FXCollections.observableArrayList(users);
         this.leader = new SimpleObjectProperty<>(leader);
         this.closed = new SimpleBooleanProperty(false);

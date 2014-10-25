@@ -6,7 +6,7 @@
 package his.view.viewwrapper;
 
 import his.control.ResourceManager;
-import his.model.User;
+import his.model.user.User;
 import his.view.ViewController;
 import java.net.URL;
 import java.util.ResourceBundle;
