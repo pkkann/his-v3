@@ -84,7 +84,7 @@ public class ManageUsersViewController extends View implements Initializable {
     }
 
     private void userSelected(User u) {
-        if (u != viewController.userRegister.getLoggedInUser()) {
+        if (u != null && u != viewController.userRegister.getLoggedInUser()) {
             editBTN.setDisable(false);
             deleteBTN.setDisable(false);
         } else {
@@ -95,10 +95,10 @@ public class ManageUsersViewController extends View implements Initializable {
 
     public void loadTable() {
         usersTV.setItems(viewController.userRegister.getObservableObjects());
-        
+
         // 1. Wrap the ObservableList in a FilteredList (initially display all data).
         FilteredList<User> filteredData = new FilteredList<>(viewController.userRegister.getObservableObjects(), p -> true);
-        
+
         // 2. Set the filter Predicate whenever the filter changes.
         searchTF.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(user -> {
@@ -107,28 +107,32 @@ public class ManageUsersViewController extends View implements Initializable {
                     return true;
                 }
 
-                // Compare first name and last name of every person with filter text.
+                // Compare info
                 String lowerCaseFilter = newValue.toLowerCase();
 
                 if (user.getName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    userSelected(null);
                     return true; // Filter matches first name.
                 } else if (user.getUsername().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    userSelected(null);
                     return true; // Filter mateches username.
                 } else if (user.getEmail().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    userSelected(null);
                     return true; // Filter mateches email.
                 } else if (user.getPhone().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    userSelected(null);
                     return true; // Filter mateches phone.
                 }
                 return false; // Does not match.
             });
         });
-        
+
         // 3. Wrap the FilteredList in a SortedList. 
         SortedList<User> sortedData = new SortedList<>(filteredData);
-        
+
         // 4. Bind the SortedList comparator to the TableView comparator.
         sortedData.comparatorProperty().bind(usersTV.comparatorProperty());
-        
+
         // 5. Add sorted (and filtered) data to the table.
         usersTV.setItems(sortedData);
     }
