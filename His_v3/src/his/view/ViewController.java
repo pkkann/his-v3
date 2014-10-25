@@ -48,7 +48,7 @@ public class ViewController {
         this.primaryStage.setFullScreenExitHint("");
         this.primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
         this.primaryStage.setMinWidth(1000);
-        this.primaryStage.setMinHeight(730);
+        this.primaryStage.setMinHeight(600);
         this.primaryStage.setTitle(his.His.title);
         if (ConfigHandler.getInstance().getFullscreen()) {
             this.primaryStage.setFullScreen(true);

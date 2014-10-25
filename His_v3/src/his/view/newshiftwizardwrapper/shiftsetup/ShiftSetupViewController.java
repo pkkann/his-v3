@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package his.view.chooseusers;
+package his.view.newshiftwizardwrapper.shiftsetup;
 
 import his.view.View;
 import java.net.URL;
@@ -17,7 +17,7 @@ import javafx.scene.layout.StackPane;
  *
  * @author Patrick
  */
-public class ChooseUsersViewController extends View implements Initializable {
+public class ShiftSetupViewController extends View implements Initializable {
 
     @FXML
     private StackPane pane;

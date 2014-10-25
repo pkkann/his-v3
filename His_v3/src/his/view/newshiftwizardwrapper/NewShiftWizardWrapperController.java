@@ -1,10 +1,10 @@
 package his.view.newshiftwizardwrapper;
 
-import his.view.chooseevents.ChooseEventsViewController;
-import his.view.chooseusers.ChooseUsersViewController;
+import his.view.newshiftwizardwrapper.chooseevents.ChooseEventsViewController;
+import his.view.newshiftwizardwrapper.chooseusers.ChooseUsersViewController;
 import his.view.View;
 import his.view.ViewController;
-import his.view.shiftsetup.ShiftSetupViewController;
+import his.view.newshiftwizardwrapper.shiftsetup.ShiftSetupViewController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -50,7 +50,7 @@ public class NewShiftWizardWrapperController extends View implements Initializab
         if (this.viewController.primaryStage.isShowing()) {
             try {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(ViewController.class.getResource("ChooseUsersView.fxml"));
+                loader.setLocation(ViewController.class.getResource("newshiftwizardwrapper/chooseusers/ChooseUsersView.fxml"));
                 StackPane pane = (StackPane) loader.load();
 
                 ChooseUsersViewController controller = loader.getController();
@@ -66,7 +66,7 @@ public class NewShiftWizardWrapperController extends View implements Initializab
         if (this.viewController.primaryStage.isShowing()) {
             try {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(ViewController.class.getResource("ChooseEventsView.fxml"));
+                loader.setLocation(ViewController.class.getResource("newshiftwizardwrapper/chooseevents/ChooseEventsView.fxml"));
                 StackPane pane = (StackPane) loader.load();
 
                 ChooseEventsViewController controller = loader.getController();
@@ -82,7 +82,7 @@ public class NewShiftWizardWrapperController extends View implements Initializab
         if (this.viewController.primaryStage.isShowing()) {
             try {
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(ViewController.class.getResource("ShiftSetupView.fxml"));
+                loader.setLocation(ViewController.class.getResource("newshiftwizardwrapper/shiftsetup/ShiftSetupView.fxml"));
                 StackPane pane = (StackPane) loader.load();
 
                 ShiftSetupViewController controller = loader.getController();
