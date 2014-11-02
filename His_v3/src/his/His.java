@@ -51,8 +51,8 @@ public class His extends Application {
             @Override
             public void run() {
                 registerGlyphs();
-                viewController = new ViewController(primaryStage, userRegister);
-                viewController.showLoginView();
+                viewController = new ViewController(primaryStage, userRegister, shiftRegister);
+                viewController.showAdminMenuView(0);
             }
         }, new Runnable() {
 
@@ -110,7 +110,8 @@ public class His extends Application {
                 map.put("edit", 'g');
                 map.put("new", 'h');
                 map.put("delete", 'i');
-                map.put("back", 'j');
+                map.put("lock", 'j');
+                map.put("unlock", 'k');
                 return map;
             }
         };

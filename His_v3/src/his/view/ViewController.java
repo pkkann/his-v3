@@ -11,6 +11,7 @@ import his.view.settings.SettingsViewController;
 import his.view.viewwrapper.ViewWrapperController;
 import his.view.adminmenu.AdminMenuViewController;
 import his.control.ConfigHandler;
+import his.model.shift.ShiftRegister;
 import his.model.user.User;
 import his.model.user.UserRegister;
 import java.io.IOException;
@@ -31,6 +32,7 @@ import org.controlsfx.dialog.Dialogs;
 public class ViewController {
 
     public UserRegister userRegister;
+    public ShiftRegister shiftRegister;
 
     public Stage primaryStage;
 
@@ -38,9 +40,10 @@ public class ViewController {
     private ViewWrapperController wrapperController;
     private View currentController;
 
-    public ViewController(Stage primaryStage, UserRegister userRegister) {
+    public ViewController(Stage primaryStage, UserRegister userRegister, ShiftRegister shiftRegister) {
         this.primaryStage = primaryStage;
         this.userRegister = userRegister;
+        this.shiftRegister = shiftRegister;
         init();
     }
 

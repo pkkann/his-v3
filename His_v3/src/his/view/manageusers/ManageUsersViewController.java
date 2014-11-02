@@ -10,8 +10,12 @@ import his.model.user.User;
 import his.util.Loader;
 import his.view.View;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ResourceBundle;
-import javafx.beans.property.LongProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
@@ -23,6 +27,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.util.Callback;
 import org.controlsfx.control.action.Action;
 import org.controlsfx.dialog.Dialog.Actions;
 import org.controlsfx.dialog.Dialogs;
@@ -59,7 +64,7 @@ public class ManageUsersViewController extends View implements Initializable {
     @FXML
     private TableColumn<User, Boolean> administratorTC;
     @FXML
-    private TableColumn<User, Long> createdTC;
+    private TableColumn<User, String> createdTC;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -82,7 +87,17 @@ public class ManageUsersViewController extends View implements Initializable {
         emailTC.setCellValueFactory(cellData -> cellData.getValue().getEmailProperty());
         phoneTC.setCellValueFactory(cellData -> cellData.getValue().getPhoneProperty());
         administratorTC.setCellValueFactory(cellData -> cellData.getValue().isAdministratorProperty());
-        createdTC.setCellValueFactory(cellData -> cellData.getValue().getCreateDateProperty());
+        createdTC.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<User, String>, ObservableValue<String>>() {
+
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<User, String> param) {
+                StringProperty sp = new SimpleStringProperty();
+                Date d = new Date(param.getValue().getCreateDate());
+                SimpleDateFormat dtf = new SimpleDateFormat("dd/MM/yyyy - HH:MM");
+                sp.set(dtf.format(d));
+                return sp;
+            }
+        });
 
         usersTV.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> userSelected(newValue));
